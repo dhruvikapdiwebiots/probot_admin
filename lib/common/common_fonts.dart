@@ -1,0 +1,116 @@
+import 'package:get/get.dart';
+
+class Fonts{
+
+  final selectLanguage = "selectLanguage";
+  final lightMode = "lightMode";
+  final darkMode = "darkMode";
+  final doNotHaveAccount = "doNotHaveAccount";
+  final signUp = "signUp";
+  final forgotPassword = "forgotPassword";
+  final password = "password";
+  final enterPassword = "enterPassword";
+  final signIn = "signIn";
+  final email = "email";
+  final enterYourEmail = "enterYourEmail";
+  final welcomeBack = "welcomeBack";
+  final helloAgain = "helloAgain";
+  final dashboard = "dashboard";
+  final showLanguage = "showLanguage";
+  final rowPerPage = "rowPerPage";
+  final title = "title";
+  final enterNotificationTitle = "enterNotificationTitle";
+  final content = "content";
+  final enterNotificationContent = "enterNotificationContent";
+  final image = "image";
+  final addImage = "addImage";
+  final productCollectionId = "productCollectionId";
+  final productCollection = "productCollection";
+  final product = "product";
+  final collection = "collection";
+  final update = "update";
+  final aboutUsLink = "aboutUsLink";
+  final contactUsLink = "contactUsLink";
+  final termsConditionLink = "termsConditionLink";
+  final privacyPolicyLink = "privacyPolicyLink";
+  final aboutUs = "aboutUs";
+  final contactUs = "contactUs";
+  final termsCondition = "termsCondition";
+  final privacyPolicy = "privacyPolicy";
+  final name = "name";
+  final imageError = "imageError";
+  final submit = "submit";
+  final svgNotAllowed = "svgNotAllowed";
+  final sendNotification = "sendNotification";
+  final admin = "admin";
+  final modification = "modification";
+  final noBanner = "noBanner";
+  String accessDenied(val) => "accessDenied".trParams({'title':val});
+
+
+  final maxFileSize = "maxFileSize";
+  final maxFileMultiShare = "maxFileMultiShare";
+  final pleaseEnterValue = "EnterValue";
+  final enterNumberOnly = "NumbersOnly";
+  final note = "note";
+
+
+  final pleaseEnterName = "pleaseEnterName";
+  final pleaseEnterPassword = "pleaseEnterPassword";
+  final pleaseEnterNumber = "pleaseEnterNumber";
+  final addSubscription = "addSubscription";
+  final price = "price";
+  final planType = "planType";
+  final type = "type";
+  final isStripeEnable = "isStripeEnable";
+  final isPayPalEnable = "isPayPalEnable";
+  final isInAppEnable = "isInAppEnable";
+  final isRazorPayEnable = "isRazorPayEnable";
+  final isTextCompletionEnable = "isTextCompletionEnable";
+  final isImageGeneratorEnable = "isImageGeneratorEnable";
+  final isAddEnable = "isAddEnable";
+  final isChatHistoryEnable = "isChatHistoryEnable";
+  final isChatEnable = "isChatEnable";
+  final isGoogleAdmobEnable = "isGoogleAdmobEnable";
+  final isGuestLoginEnable = "isGuestLoginEnable";
+  final credentials = "credentials";
+  final accessData = "accessData";
+  final bannerAddId = "bannerAddId";
+  final bannerIOSId = "bannerIOSId";
+  final chatGPTKey = "chatGPTKey";
+  final interstitialAdIdAndroid = "interstitialAdIdAndroid";
+  final interstitialAdIdIOS = "interstitialAdIdIOS";
+  final payPalClientId = "payPalClientId";
+  final payPalSecret = "payPalSecret";
+  final razorPayKey = "razorPayKey";
+  final razorPaySecret = "razorPaySecret";
+  final stripeKey = "stripeKey";
+  final stripePublishKey = "stripePublishKey";
+  final balance = "balance";
+  final rewardAndroidId = "rewardAndroidId";
+  final rewardIOSId = "rewardIOSId";
+  final rateAppIOSId = "rateAppIOSId";
+  final rateAppAndroidId = "rateAppAndroidId";
+  final refundLink = "refundLink";
+  final addCharacters = "addCharacters";
+  final id = "id";
+  final message = "message";
+  final isActive = "isActive";
+  final isDelete = "isDelete";
+  final actions = "actions";
+  final initialMessage = "initialMessage";
+  final memberName = "memberName";
+  final phone = "phone";
+  final expiryDate = "expiryDate";
+  final subscriptionType = "subscriptionType";
+  final isTopUp = "isTopUp";
+  final isTheme = "isTheme";
+  final delete = "delete";
+  final deleteConfirmation = "deleteConfirmation";
+  final deleteUserSuccessfully = "deleteUserSuccessfully";
+  final deleteSubscriptionConfirmation = "deleteSubscriptionConfirmation";
+  final deleteCharacterConfirmation = "deleteCharacterConfirmation";
+  final isRTL = "isRTL";
+
+
+}
