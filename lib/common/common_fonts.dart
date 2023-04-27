@@ -111,6 +111,7 @@ class Fonts{
   final deleteSubscriptionConfirmation = "deleteSubscriptionConfirmation";
   final deleteCharacterConfirmation = "deleteCharacterConfirmation";
   final isRTL = "isRTL";
+  final isCategorySuggestion = "isCategorySuggestion";
 
 
 }

@@ -148,10 +148,11 @@ class AboutUsController extends GetxController {
         var image = dropImage;
         uploadWebImage = image;
         log("uploadWebImage : $uploadWebImage");
+        Image image1 = Image.memory(uploadWebImage);
+        log("image1 : $image1");
+        isUploadSize = true;
         webImage = uploadWebImage;
         pickImage = io.File("a");
-        log("SPLASH LOGO :");
-        isUploadSize = true;
         uploadLogoFile(title);
 
         isAlert = false;
@@ -210,15 +211,10 @@ class AboutUsController extends GetxController {
 
         ImageInfo info = await getImageInfo(image1);
 
-        if (info.image.width > 300 && info.image.height > 50) {
-          homeWebImage = homeUploadWebImage;
-          homePickImage = io.File("a");
-          isHomeUploadFile = false;
-        } else {
-          isHomeUploadFile = true;
-          uploadLogoFile(title);
-        }
-
+        homeWebImage = homeUploadWebImage;
+        homePickImage = io.File("a");
+        isHomeUploadFile = true;
+        uploadLogoFile(title);
         isAlert = false;
         update();
       } else {
@@ -243,15 +239,11 @@ class AboutUsController extends GetxController {
         log("image1 : $image1");
         ImageInfo info = await getImageInfo(image1);
 
-        if (info.image.width > 300 && info.image.height > 50) {
-          homeWebImage = homeUploadWebImage;
-          homePickImage = io.File(homeFile!.path);
-          isHomeUploadFile = false;
-        } else {
-          isHomeUploadFile = true;
+        homeWebImage = homeUploadWebImage;
+        homePickImage = io.File(homeFile!.path);
+        isHomeUploadFile = true;
 
-          uploadLogoFile(title);
-        }
+        uploadLogoFile(title);
         isAlert = false;
         update();
       } else {
@@ -280,16 +272,11 @@ class AboutUsController extends GetxController {
 
         Image image1 = Image.memory(drawerUploadWebImage);
 
-        ImageInfo info = await getImageInfo(image1);
 
-        if (info.image.width > 300 && info.image.height > 50) {
-          drawerWebImage = drawerUploadWebImage;
-          drawerPickImage = io.File("a");
-          isDrawerUploadFile = false;
-        } else {
-          isDrawerUploadFile = true;
-          uploadLogoFile(title);
-        }
+        drawerWebImage = drawerUploadWebImage;
+        drawerPickImage = io.File("a");
+        isDrawerUploadFile = true;
+        uploadLogoFile(title);
 
         isAlert = false;
         update();
@@ -315,15 +302,11 @@ class AboutUsController extends GetxController {
         log("image1 : $image1");
         ImageInfo info = await getImageInfo(image1);
 
-        if (info.image.width > 300 && info.image.height > 50) {
-          drawerWebImage = drawerUploadWebImage;
-          drawerPickImage = io.File(drawerFile!.path);
-          isDrawerUploadFile = false;
-        } else {
-          isDrawerUploadFile = true;
+        drawerWebImage = drawerUploadWebImage;
+        drawerPickImage = io.File(drawerFile!.path);
+        isDrawerUploadFile = true;
 
-          uploadLogoFile(title);
-        }
+        uploadLogoFile(title);
         isAlert = false;
         update();
       } else {
@@ -374,6 +357,8 @@ class AboutUsController extends GetxController {
   }
 
   uploadImage(title, url) async {
+    isLoading =false;
+    update();
     FirebaseFirestore.instance
         .collection(collectionName.config)
         .get()

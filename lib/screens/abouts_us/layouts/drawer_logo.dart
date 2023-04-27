@@ -25,10 +25,10 @@ class DrawerLogo extends StatelessWidget {
                   title: "drawerLogo");
             }),
         image!.isNotEmpty &&
-                aboutUsCtrl.homePickImage != null &&
-                aboutUsCtrl.homeWebImage.isNotEmpty
+                aboutUsCtrl.drawerPickImage != null &&
+                aboutUsCtrl.drawerWebImage.isNotEmpty
             ? CommonDottedBorder(
-                    child: Image.memory(aboutUsCtrl.homeWebImage, fit: BoxFit.fill))
+                    child: Image.memory(aboutUsCtrl.drawerWebImage, fit: BoxFit.fill))
                 .inkWell(
                     onTap: () => aboutUsCtrl.getImage(
                         source: ImageSource.gallery,

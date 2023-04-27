@@ -108,6 +108,12 @@ class UsageControlDesktop extends StatelessWidget {
                                       usageCtrl.commonSwitcherValueChange(
                                           "isTheme", val)),
                               DesktopSwitchCommon(
+                                  title: fonts.isCategorySuggestion,
+                                  value: configModel!.isCategorySuggestion,
+                                  onChanged: (val) =>
+                                      usageCtrl.commonSwitcherValueChange(
+                                          "isCategorySuggestion", val)),
+                              DesktopSwitchCommon(
                                   isDivider: true,
                                   title: fonts.isGuestLoginEnable,
                                   value: configModel!.isGuestLoginEnable,

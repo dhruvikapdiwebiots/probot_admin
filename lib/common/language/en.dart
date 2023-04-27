@@ -168,6 +168,7 @@ final dynamic en = {
   "isTopUp": "Is Top-Up",
   "delete": "Delete",
   "isRTL": "Is RTL Enable",
+  "isCategorySuggestion": "Is Category Suggestion Enable",
   "category": "Category",
   "deleteConfirmation": "Are You Sure You want to Delete this User?",
   "deleteSubscriptionConfirmation": "Are you sure you want to delete this Subscription?",

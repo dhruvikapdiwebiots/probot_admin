@@ -76,6 +76,11 @@ class UsageControlMobile extends StatelessWidget {
             value: configModel!.isRTL,
             onChanged: (val) =>
                 usageCtrl.commonSwitcherValueChange("isRTL", val)),
+        MobileSwitchCommon(
+            title: fonts.isCategorySuggestion,
+            value: configModel!.isCategorySuggestion,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isCategorySuggestion", val)),
         MobileTextFieldCommon(
             obscureText: true,
             validator: (number) => Validation().statusValidation(number),

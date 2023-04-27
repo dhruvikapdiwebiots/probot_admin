@@ -23,7 +23,7 @@ class FirebaseConfigModel {
       facebookInterstitialAd,
       facebookRewardAd,
       splashLogo,drawerLogo,homeLogo;
-  bool? isChatShow;
+  bool? isChatShow,isCategorySuggestion;
   bool? isImageGeneratorShow;
   int? balance;
   bool? isTextCompletionShow;
@@ -67,6 +67,7 @@ class FirebaseConfigModel {
       this.isAddShow,
       this.isPaypal,
       this.isRTL,
+      this.isCategorySuggestion,
       this.isInApp,
       this.isRazorPay,
       this.isStripe,
@@ -101,6 +102,7 @@ class FirebaseConfigModel {
     isChatShow = json['isChatShow'] ?? true;
     isImageGeneratorShow = json['isImageGeneratorShow'] ?? true;
     isTextCompletionShow = json['isTextCompletionShow'] ?? true;
+    isCategorySuggestion = json['isCategorySuggestion'] ?? true;
     isRTL = json['isRTL'] ?? false;
     isChatHistory = json['isChatHistory'] ?? true;
     isAddShow = json['isAddShow'] ?? true;
@@ -140,6 +142,7 @@ class FirebaseConfigModel {
     data['isChatShow'] = isChatShow;
     data['isImageGeneratorShow'] = isImageGeneratorShow;
     data['isTextCompletionShow'] = isTextCompletionShow;
+    data['isCategorySuggestion'] = isCategorySuggestion;
     data['isAddShow'] = isAddShow;
     data['isStripe'] = isStripe;
     data['isPayPal'] = isPaypal;
