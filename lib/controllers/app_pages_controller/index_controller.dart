@@ -2,6 +2,7 @@ import 'package:probot_admin/config.dart';
 import 'package:probot_admin/screens/abouts_us/abouts_us.dart';
 import 'package:probot_admin/screens/category/category.dart';
 import 'package:probot_admin/screens/characters/characters.dart';
+import 'package:probot_admin/screens/onboard_screen/onboard_screen.dart';
 
 import 'package:probot_admin/screens/user_subscribe_list/user__subscribe_list.dart';
 
@@ -25,9 +26,9 @@ class IndexController extends GetxController {
     UsersList(),
     UserSubscribeList(),
     SubscriptionList(),
-
     CharacterLayout(),
-    Category(),
+     Category(),
+    OnboardScreen(),
     GeneralSetting(),
     AboutsUs(),
     Text("LOGOUT")

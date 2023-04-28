@@ -26,9 +26,47 @@ class AppArray{
     {'icon': svgAssets.crown, 'title': "subscription"},
     {'icon': svgAssets.android, 'title': "character"},
     {'icon': svgAssets.category, 'title': "category"},
+    {'icon': svgAssets.onBoard, 'title': "onBoardScreen"},
     {'icon': svgAssets.setting, 'title': "generalSetting"},
     {'icon': svgAssets.aboutUs, 'title': "aboutsUs"},
     {'icon': svgAssets.logout, 'title': "logout"},
+  ];
+
+
+// Languages list
+  var languagesList = [
+    {
+      "title": "english",
+      'locale': const Locale('en', 'US'),
+      "code": "en"
+    },
+    {
+
+      "title": "hindi",
+      'locale': const Locale('hi', 'IN'),
+      "code": "hi"
+    },
+    {
+      "title": "french",
+      'locale': const Locale('fr', 'CA'),
+      "code": "fr"
+    },
+    {
+      "title": "italian",
+      'locale': const Locale('it', 'IT'),
+      "code": "it"
+    },
+    {
+      "title": "german",
+      'locale': const Locale('ge', 'GE'),
+      "code": "ge"
+    },
+    {
+
+      "title": "japanese",
+      'locale': const Locale('ja', 'JP'),
+      "code": "ja"
+    },
   ];
 
 }

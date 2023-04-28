@@ -18,11 +18,13 @@ class SvgAssets{
   final String setting = 'assets/svg/setting.svg';
   final String addUser = 'assets/svg/addUser.svg';
   final String light = 'assets/svg/light.svg';
+  final String dropDown = 'assets/svg/dropDown.svg';
   final String languages = 'assets/svg/languages.svg';
   final String people = 'assets/svg/people.svg';
   final String userSubscribe = 'assets/svg/userSubscribe.svg';
   final String aboutUs = 'assets/svg/aboutUs.svg';
   final String crown = 'assets/svg/crown.svg';
   final String category = 'assets/svg/category.svg';
+  final String onBoard = 'assets/svg/onBoard.svg';
 
 }

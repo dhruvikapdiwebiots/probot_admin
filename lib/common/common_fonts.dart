@@ -112,6 +112,9 @@ class Fonts{
   final deleteCharacterConfirmation = "deleteCharacterConfirmation";
   final isRTL = "isRTL";
   final isCategorySuggestion = "isCategorySuggestion";
+  final english = "english";
+  final onBoardScreen = "onBoardScreen";
+  final description = "description";
 
 
 }

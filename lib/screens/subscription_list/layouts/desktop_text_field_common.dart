@@ -6,9 +6,10 @@ class DesktopTextFieldCommon extends StatelessWidget {
   final FormFieldValidator? validator;
   final bool? isNote,isAppSettings,obscureText;
   final double? width;
+  final ValueChanged<String>? onChanged;
 
   const DesktopTextFieldCommon(
-      {Key? key, this.title, this.controller, this.validator,this.isNote,this.isAppSettings,this.width,this.obscureText = false})
+      {Key? key, this.title, this.controller, this.validator,this.isNote,this.isAppSettings,this.width,this.obscureText = false,this.onChanged})
       : super(key: key);
 
   @override
@@ -29,6 +30,8 @@ obscureText: obscureText!,
           keyboardType: TextInputType.multiline,
           cursorColor: appCtrl.appTheme.primary,
           controller: controller!,
+          onChanged:onChanged ,
+
           decoration: InputDecoration(
                 errorStyle: AppCss.outfitMedium10,
               isDense: true,

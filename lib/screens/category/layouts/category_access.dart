@@ -1,15 +1,17 @@
+import 'package:probot_admin/controllers/app_pages_controller/category_access_controller.dart';
+import 'package:probot_admin/models/category_access_model.dart';
 import 'package:probot_admin/models/firebase_config.dart';
 
-import '../../../config.dart';
+import '../../../../config.dart';
 
-class UsageControlDesktop extends StatelessWidget {
-  final FirebaseConfigModel? configModel;
+class CategoryAccessDesktop extends StatelessWidget {
+  final CategoryAccessModel? configModel;
 
-  const UsageControlDesktop({Key? key, this.configModel}) : super(key: key);
+  const CategoryAccessDesktop({Key? key, this.configModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<GeneralSettingController>(builder: (usageCtrl) {
+    return GetBuilder<CategoryAccessController>(builder: (usageCtrl) {
       return Stack(
         children: [
           Column(
@@ -91,7 +93,7 @@ class UsageControlDesktop extends StatelessWidget {
                                         "isChatHistory", val)),
                             DesktopSwitchCommon(
                                 title: fonts.isChatEnable,
-                                value: configModel!.isChatShow,
+                                value: configModel!.isCodeGenerator,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
                                         "isChatShow", val)),
@@ -125,13 +127,7 @@ class UsageControlDesktop extends StatelessWidget {
               .paddingAll(Insets.i30)
               .boxExtension1()
               .marginOnly(top: Insets.i15),
-          CommonButton(
-            title: fonts.accessData.tr.toUpperCase(),
-            onTap: () => usageCtrl.updateData(),
-            style: AppCss.outfitMedium12.textColor(appCtrl.appTheme.white),
-            width: Sizes.s250,
-            margin: Insets.i15,
-          ),
+
         ],
       );
     });

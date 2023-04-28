@@ -4,6 +4,8 @@ class CollectionName{
   String plans = "plans";
   String userSubscribe = "userSubscribe";
   String characters = "characters";
+  String onBoardScreen = "onBoardScreen";
   String config = "config";
+  String categoryAccess = "categoryAccess";
 
 }
