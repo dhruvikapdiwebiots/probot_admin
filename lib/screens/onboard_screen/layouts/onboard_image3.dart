@@ -55,7 +55,7 @@ class OnboardImage3 extends StatelessWidget {
                                 source: ImageSource.gallery,
                                 context: context,
                                 title: "image3"))
-      ]).height(onboardCtrl.isOnboardUploadFile3 ? Sizes.s40 : Sizes.s50);
+      ]).height(onboardCtrl.isOnboardUploadFile3 ? Sizes.s40 : image!.isNotEmpty ?Sizes.s150 : Sizes.s50);
     });
   }
 }

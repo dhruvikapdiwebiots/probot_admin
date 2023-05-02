@@ -1,68 +1,47 @@
 
 
 class CategoryAccessModel {
-  bool? isCodeGenerator,isCategorySuggestion;
-  bool? isImageGeneratorShow;
-  bool? isTextCompletionShow;
-  bool? isTheme,isRTL;
-  bool? isAddShow,
-      isRazorPay,
-      isStripe,
-      isPaypal,
-      isInApp,
-      isChatHistory,
-      isGuestLoginEnable,
-      isGoogleAdmobEnable;
+  bool? isCodeGeneratorEnable,isTranslateAnythingEnable;
+  bool? isSocialMediaEnable;
+  bool? isEmailGeneratorEnable;
+  bool? isPersonalAdvisorEnable,isPasswordGeneratorEnable;
+  bool? isTravelEnable,
+      isEssayWriterEnable,
+      isContentWritingEnable;
 
   CategoryAccessModel(
       {
-      this.isCodeGenerator,
-      this.isImageGeneratorShow,
-      this.isTextCompletionShow,
-      this.isAddShow,
-      this.isPaypal,
-      this.isRTL,
-      this.isCategorySuggestion,
-      this.isInApp,
-      this.isRazorPay,
-      this.isStripe,
-      this.isTheme,
-      this.isChatHistory,
-      this.isGuestLoginEnable,
-      this.isGoogleAdmobEnable});
+      this.isCodeGeneratorEnable,
+      this.isSocialMediaEnable,
+      this.isEmailGeneratorEnable,
+      this.isTravelEnable,
+      this.isPasswordGeneratorEnable,
+      this.isTranslateAnythingEnable,
+      this.isEssayWriterEnable,
+      this.isContentWritingEnable,
+      this.isPersonalAdvisorEnable});
 
   CategoryAccessModel.fromJson(Map<String, dynamic> json) {
-    isCodeGenerator = json['isCodeGenerator'] ?? true;
-    isImageGeneratorShow = json['isImageGeneratorShow'] ?? true;
-    isTextCompletionShow = json['isTextCompletionShow'] ?? true;
-    isCategorySuggestion = json['isCategorySuggestion'] ?? true;
-    isRTL = json['isRTL'] ?? false;
-    isChatHistory = json['isChatHistory'] ?? true;
-    isAddShow = json['isAddShow'] ?? true;
-    isRazorPay = json['isRazorPay'] ?? true;
-    isPaypal = json['isPayPal'] ?? true;
-    isStripe = json['isStripe'] ?? true;
-    isInApp = json['isInApp'] ?? true;
-    isTheme = json['isTheme'] ?? false;
-    isGuestLoginEnable = json['isGuestLoginEnable'] ?? true;
-    isGoogleAdmobEnable = json['isGoogleAdmobEnable'] ?? true;
+    isCodeGeneratorEnable = json['isCodeGeneratorEnable'] ?? true;
+    isSocialMediaEnable = json['isSocialMediaEnable'] ?? true;
+    isEmailGeneratorEnable = json['isEmailGeneratorEnable'] ?? true;
+    isTranslateAnythingEnable = json['isTranslateAnythingEnable'] ?? true;
+    isPasswordGeneratorEnable = json['isPasswordGeneratorEnable'] ?? false;
+    isTravelEnable = json['isTravelEnable'] ?? true;
+    isEssayWriterEnable = json['isEssayWriterEnable'] ?? true;
+    isContentWritingEnable = json['isContentWritingEnable'] ?? true;
+    isPersonalAdvisorEnable = json['isPersonalAdvisorEnable'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['isCodeGenerator'] = isCodeGenerator;
-    data['isImageGeneratorShow'] = isImageGeneratorShow;
-    data['isTextCompletionShow'] = isTextCompletionShow;
-    data['isCategorySuggestion'] = isCategorySuggestion;
-    data['isAddShow'] = isAddShow;
-    data['isStripe'] = isStripe;
-    data['isPayPal'] = isPaypal;
-    data['isRazorPay'] = isRazorPay;
-    data['isChatHistory'] = isChatHistory;
-    data['isInApp'] = isInApp;
-    data['isGuestLoginEnable'] = isGuestLoginEnable;
-    data['isGoogleAdmobEnable'] = isGoogleAdmobEnable;
-
+    data['isCodeGeneratorEnable'] = isCodeGeneratorEnable;
+    data['isSocialMediaEnable'] = isSocialMediaEnable;
+    data['isEmailGeneratorEnable'] = isEmailGeneratorEnable;
+    data['isTranslateAnythingEnable'] = isTranslateAnythingEnable;
+    data['isTravelEnable'] = isTravelEnable;
+    data['isContentWritingEnable'] = isContentWritingEnable;
+    data['isEssayWriterEnable'] = isEssayWriterEnable;
     return data;
   }
 }

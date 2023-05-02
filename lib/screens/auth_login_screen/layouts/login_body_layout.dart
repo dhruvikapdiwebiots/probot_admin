@@ -22,7 +22,7 @@ class LoginBodyLayout extends StatelessWidget {
                 FittedBox(
                   child: Text("Welcome Back ! You have been missed",
                       style: AppCss.outfitMedium26
-                          .textColor(appCtrl.appTheme.secondary)),
+                          .textColor(appCtrl.isTheme ? appCtrl.appTheme.white: appCtrl.appTheme.secondary)),
                 ),
                 const VSpace(Sizes.s8),
                 Text("Fill the below form",

@@ -39,7 +39,7 @@ class DrawerList extends StatelessWidget {
                               const HSpace(Sizes.s20),
                               Responsive.isDesktop(context) && value == false
                                   ? Container()
-                                  : Text(e.value["title"].toString().tr ?? "",
+                                  : Text(e.value["title"] != null? e.value["title"].toString().tr:"",
                                       style: AppCss.outfitMedium14.textColor(
                                           indexCtrl.selectedIndex == e.key
                                               ? appCtrl.appTheme.white

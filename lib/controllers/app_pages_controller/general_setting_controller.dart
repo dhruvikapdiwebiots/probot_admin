@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:probot_admin/config.dart';
+import 'package:probot_admin/models/firebase_config.dart';
 import 'package:probot_admin/screens/characters/layouts/add_character.dart';
 import 'dart:io' as io;
 
@@ -10,6 +11,8 @@ class GeneralSettingController extends GetxController {
   bool isLoading = false;
   bool isAlert = false;
   String id = "";
+  String isGoogleAd = "google";
+
   TextEditingController txtBannerAddId = TextEditingController();
   TextEditingController txtBannerIOSId = TextEditingController();
   TextEditingController txtChatGPTKey = TextEditingController();
@@ -24,6 +27,9 @@ class GeneralSettingController extends GetxController {
   TextEditingController txtBalance = TextEditingController();
   TextEditingController txtRewardAndroidId = TextEditingController();
   TextEditingController txtRewardIOSId = TextEditingController();
+  TextEditingController txtFacebookAndroidId = TextEditingController();
+  TextEditingController txtFacebookInterstitialId = TextEditingController();
+  TextEditingController txtFacebookRewardId = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   //get data from firebase
@@ -31,6 +37,7 @@ class GeneralSettingController extends GetxController {
     await FirebaseFirestore.instance.collection("config").get().then((value) {
       if (value.docs.isNotEmpty) {
         id = value.docs[0].id;
+
         usageCtrl = value.docs[0].data();
         txtBannerAddId.text = usageCtrl["bannerAddId"];
         txtBannerIOSId.text = usageCtrl["bannerIOSId"];
@@ -46,6 +53,11 @@ class GeneralSettingController extends GetxController {
         txtBalance.text = usageCtrl["balance"].toString();
         txtRewardAndroidId.text = usageCtrl["rewardAndroidId"];
         txtRewardIOSId.text = usageCtrl["rewardIOSId"];
+        txtFacebookAndroidId.text = usageCtrl["facebookAddAndroidId"];
+        txtFacebookInterstitialId.text = usageCtrl["facebookInterstitialAd"];
+        txtFacebookRewardId.text = usageCtrl["facebookRewardAd"];
+        isGoogleAd =usageCtrl["isGoogleAdmobEnable"] == true ? "google" : "facebook";
+
       }
     });
     update();

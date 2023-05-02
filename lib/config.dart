@@ -52,7 +52,7 @@ export 'package:probot_admin/screens/user_list/layouts/arrow_back.dart';
 export 'package:probot_admin/screens/user_list/layouts/arrow_forward.dart';
 export 'package:probot_admin/screens/user_list/layouts/search_action.dart';
 export 'package:probot_admin/screens/user_list/layouts/user_list_layout.dart';
-
+export 'package:probot_admin/screens/general_setting/layouts/ad_show_hide.dart';
 
 
 // All widgets library
@@ -67,6 +67,9 @@ export 'package:probot_admin/widgets/text_field_validation.dart';
 export 'package:probot_admin/widgets/common_widget_class.dart';
 export 'package:probot_admin/widgets/common_switcher.dart';
 export 'package:probot_admin/widgets/helper_function.dart';
+
+export 'package:probot_admin/widgets/something_wrong.dart';
+
 
 // All screens library
 export 'package:probot_admin/screens/dashboard/dashboard.dart';

@@ -20,9 +20,18 @@ class CategoryAccessController extends GetxController {
     });
   }
 
+  getId()async{
+    await FirebaseFirestore.instance.collection(collectionName.categoryAccess).get().then((value) {
+      if(value.docs.isNotEmpty){
+        id = value.docs[0].id;
+      }
+      update();
+    });
+  }
+
   @override
   void onReady() {
-
+getId();
 
     // TODO: implement onReady
     super.onReady();

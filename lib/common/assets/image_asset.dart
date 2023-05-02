@@ -11,4 +11,5 @@ class ImageAssets{
   final String moon = 'assets/images/moon.png';
   final String activeIcon = 'assets/images/activeIcon.png';
   final String inActiveIcon = 'assets/images/inActiveIcon.png';
+  final String failed = 'assets/images/failed.png';
 }

@@ -31,21 +31,12 @@ class UsageControlMobile extends StatelessWidget {
             value: configModel!.isRazorPay,
             onChanged: (val) =>
                 usageCtrl.commonSwitcherValueChange("isRazorPay", val)),
-        MobileSwitchCommon(
-            title: fonts.isTextCompletionEnable,
-            value: configModel!.isTextCompletionShow,
-            onChanged: (val) => usageCtrl.commonSwitcherValueChange(
-                "isTextCompletionShow", val)),
+
         MobileSwitchCommon(
             title: fonts.isImageGeneratorEnable,
             value: configModel!.isImageGeneratorShow,
             onChanged: (val) => usageCtrl.commonSwitcherValueChange(
                 "isImageGeneratorShow", val)),
-        MobileSwitchCommon(
-            title: fonts.isAddEnable,
-            value: configModel!.isAddShow,
-            onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isAddShow", val)),
         MobileSwitchCommon(
             title: fonts.isChatHistoryEnable,
             value: configModel!.isChatHistory,
@@ -76,6 +67,16 @@ class UsageControlMobile extends StatelessWidget {
             value: configModel!.isRTL,
             onChanged: (val) =>
                 usageCtrl.commonSwitcherValueChange("isRTL", val)),
+        MobileSwitchCommon(
+            title: fonts.voiceSearchEnable,
+            value: configModel!.isVoiceEnable,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isVoiceEnable", val)),
+        MobileSwitchCommon(
+            title: fonts.imageTextSearchEnable,
+            value: configModel!.isCameraEnable,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isCameraEnable", val)),
         MobileSwitchCommon(
             title: fonts.isCategorySuggestion,
             value: configModel!.isCategorySuggestion,
@@ -146,6 +147,21 @@ class UsageControlMobile extends StatelessWidget {
             validator: (number) => Validation().statusValidation(number),
             title: fonts.stripePublishKey,
             controller: usageCtrl.txtStripePublishKey),
+        MobileTextFieldCommon(
+
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.facebookAndroidId,
+            controller: usageCtrl.txtFacebookAndroidId),
+        MobileTextFieldCommon(
+
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.facebookInterstitialAdId,
+            controller: usageCtrl.txtFacebookInterstitialId),
+        MobileTextFieldCommon(
+
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.facebookRewardId,
+            controller: usageCtrl.txtFacebookRewardId),
       ]).paddingAll(Insets.i10);
     });
   }

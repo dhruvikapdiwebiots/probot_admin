@@ -61,6 +61,39 @@ class OnboardController extends GetxController {
     selectLanguageLists = appArray.languagesList
         .map((e) => SelectLanguageModel.fromJson(e))
         .toList();
+
+    await FirebaseFirestore.instance.collection(collectionName.onBoardScreen).get().then((value) {
+      if(value.docs.isNotEmpty){
+        id= value.docs[0].id;
+        languages = value.docs[0].data()["languages"];
+        List images =value.docs[0].data()["images"];
+        imageUrl = images[0];
+        imageUrl2 = images[1];
+        imageUrl3 = images[2];
+        languages.asMap().entries.forEach((element) {
+          if(element.value["language"] == "en"){
+            txtEngTitle.text = element.value["title"];
+            txtEngDesc.text = element.value["description"];
+          }else  if(element.value["language"] == "hi"){
+            txtHiTitle.text = element.value["title"];
+            txtHiDesc.text = element.value["description"];
+          }else  if(element.value["language"] == "fr"){
+            txtFrTitle.text = element.value["title"];
+            txtFrDesc.text = element.value["description"];
+          }else  if(element.value["language"] == "it"){
+            txtITTitle.text = element.value["title"];
+            txtITDesc.text = element.value["description"];
+          }else  if(element.value["language"] == "ge"){
+            txtGrTitle.text = element.value["title"];
+            txtGrDesc.text = element.value["description"];
+          }else  if(element.value["language"] == "ja"){
+            txtJpTitle.text = element.value["title"];
+            txtJpDesc.text = element.value["description"];
+          }
+        });
+      }
+
+    });
     update();
   }
 
@@ -387,8 +420,9 @@ class OnboardController extends GetxController {
           log("res : $res");
           res.ref.getDownloadURL().then((downloadUrl) async {
             imageUrl3 = downloadUrl;
-            log("imageUrl2 : $imageUrl3");
+            log("imageUrl3 : $imageUrl3");
             update();
+            addData();
             await Future.delayed(Durations.s3);
           }, onError: (err) {
             update();
@@ -399,11 +433,65 @@ class OnboardController extends GetxController {
   }
 
 
-  addData() async {
-    isLoading = true;
+  updateData()async{
+    isLoading = true; update();
+
     if(formKey.currentState!.validate()){
       if(imageUrl.isNotEmpty && imageUrl2.isNotEmpty && imageUrl3.isNotEmpty) {
+
+        await FirebaseFirestore.instance.collection(collectionName.onBoardScreen).doc(id)
+            .update({
+          "images": [imageUrl, imageUrl2, imageUrl3],
+          "languages": [
+            {
+              "title": txtEngTitle.text,
+              "description": txtEngDesc.text,
+              "language": "en"
+            },
+            {
+              "title": txtHiTitle.text,
+              "description": txtHiDesc.text,
+              "language": "hi"
+            },
+            {
+              "title": txtFrTitle.text,
+              "description": txtFrDesc.text,
+              "language": "fr"
+            },
+            {
+              "title": txtITTitle.text,
+              "description": txtITDesc.text,
+              "language": "it"
+            },
+            {
+              "title": txtGrTitle.text,
+              "description": txtGrDesc.text,
+              "language": "ge"
+            },
+            {
+              "title": txtJpTitle.text,
+              "description": txtJpDesc.text,
+              "language": "ja"
+            }
+          ]
+        }).then((value) {
+          appCtrl.isAlert = false;
+          isLoading = false;
+          update();
+        });
+      }else{
+        appCtrl.isAlert = true;
         update();
+      }
+    }
+  }
+
+  addData() async {
+    isLoading = true; update();
+
+    if(formKey.currentState!.validate()){
+      if(imageUrl.isNotEmpty && imageUrl2.isNotEmpty && imageUrl3.isNotEmpty) {
+
         await FirebaseFirestore.instance.collection(collectionName.onBoardScreen)
             .add({
           "images": [imageUrl, imageUrl2, imageUrl3],
@@ -414,30 +502,30 @@ class OnboardController extends GetxController {
               "language": "en"
             },
             {
-              "title": txtHiDesc.text,
+              "title": txtHiTitle.text,
               "description": txtHiDesc.text,
               "language": "hi"
             },
             {
-              "title": txtFrDesc.text,
+              "title": txtFrTitle.text,
               "description": txtFrDesc.text,
               "language": "fr"
             },
             {
-              "title": txtITDesc.text,
+              "title": txtITTitle.text,
               "description": txtITDesc.text,
               "language": "it"
             },
             {
-              "title": txtGrDesc.text,
+              "title": txtGrTitle.text,
               "description": txtGrDesc.text,
-              "language": "gr"
+              "language": "ge"
             },
             {
-              "title": txtJpDesc.text,
+              "title": txtJpTitle.text,
               "description": txtJpDesc.text,
-              "language": "jp"
-            },
+              "language": "ja"
+            }
           ]
         }).then((value) {
           appCtrl.isAlert = false;
@@ -446,6 +534,7 @@ class OnboardController extends GetxController {
         });
       }else{
         appCtrl.isAlert = true;
+        update();
       }
     }
   }

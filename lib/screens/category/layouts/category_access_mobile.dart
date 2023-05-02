@@ -14,65 +14,52 @@ class CategoryAccessMobile extends StatelessWidget {
     return GetBuilder<CategoryAccessController>(builder: (usageCtrl) {
       return Column(children: [
         MobileSwitchCommon(
-            title: fonts.isStripeEnable,
-            value: configModel!.isStripe,
+            title: fonts.contentWritingEnable,
+            value: configModel!.isContentWritingEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isStripe", val)),
+                usageCtrl.commonSwitcherValueChange("isContentWritingEnable", val)),
+
         MobileSwitchCommon(
-            title: fonts.isPayPalEnable,
-            value: configModel!.isPaypal,
+            title: fonts.essayWriterEnable,
+            value: configModel!.isEssayWriterEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isPayPal", val)),
+                usageCtrl.commonSwitcherValueChange("isEssayWriterEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isInAppEnable,
-            value: configModel!.isInApp,
-            onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isInApp", val)),
-        MobileSwitchCommon(
-            title: fonts.isRazorPayEnable,
-            value: configModel!.isRazorPay,
-            onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isRazorPay", val)),
-        MobileSwitchCommon(
-            title: fonts.isTextCompletionEnable,
-            value: configModel!.isTextCompletionShow,
+            title: fonts.socialMediaEnable,
+            value: configModel!.isSocialMediaEnable,
             onChanged: (val) => usageCtrl.commonSwitcherValueChange(
-                "isTextCompletionShow", val)),
+                "isSocialMediaEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isImageGeneratorEnable,
-            value: configModel!.isImageGeneratorShow,
-            onChanged: (val) => usageCtrl.commonSwitcherValueChange(
-                "isImageGeneratorShow", val)),
-        MobileSwitchCommon(
-            title: fonts.isAddEnable,
-            value: configModel!.isAddShow,
+            title: fonts.travelEnable,
+            value: configModel!.isTravelEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isAddShow", val)),
+                usageCtrl.commonSwitcherValueChange("isTravelEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isChatHistoryEnable,
-            value: configModel!.isChatHistory,
+            title: fonts.translateAnythingEnable,
+            value: configModel!.isTranslateAnythingEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isChatHistory", val)),
+                usageCtrl.commonSwitcherValueChange("isTranslateAnythingEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isChatEnable,
-            value: configModel!.isCodeGenerator,
+            title: fonts.codeGeneratorEnable,
+            value: configModel!.isCodeGeneratorEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isChatShow", val)),
+                usageCtrl.commonSwitcherValueChange("isCodeGeneratorEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isGoogleAdmobEnable,
-            value: configModel!.isGoogleAdmobEnable,
-            onChanged: (val) => usageCtrl.commonSwitcherValueChange(
-                "isGoogleAdmobEnable", val)),
-        MobileSwitchCommon(
-            title: fonts.isGuestLoginEnable,
-            value: configModel!.isGuestLoginEnable,
+            title: fonts.passwordGeneratorEnable,
+            value: configModel!.isPasswordGeneratorEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isGuestLoginEnable", val)),
+                usageCtrl.commonSwitcherValueChange("isPasswordGeneratorEnable", val)),
         MobileSwitchCommon(
-            title: fonts.isTheme,
-            value: configModel!.isTheme,
+            title: fonts.personalAdvisorEnable,
+            value: configModel!.isPersonalAdvisorEnable,
             onChanged: (val) =>
-                usageCtrl.commonSwitcherValueChange("isTheme", val)),
+                usageCtrl.commonSwitcherValueChange("isPersonalAdvisorEnable", val)),
+        MobileSwitchCommon(
+            title: fonts.emailGeneratorEnable,
+            value: configModel!.isEmailGeneratorEnable,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isEmailGeneratorEnable", val)),
+
       ]).paddingAll(Insets.i10);
     });
   }

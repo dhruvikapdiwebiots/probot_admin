@@ -29,9 +29,8 @@ class OnboardScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.start,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,32 +41,11 @@ class OnboardScreen extends StatelessWidget {
                                             .textHeight(1.5)),
                                     const VSpace(Sizes.s15),
                                     OnboardImage1(
-                                      image: "",
+                                      image: onboardCtrl.imageUrl,
                                     ),
                                   ],
                                 ),
-                                const VSpace(Sizes.s30),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${fonts.image.tr} 3",
-                                        style: AppCss.outfitMedium18
-                                            .textColor(appCtrl.appTheme.dark)
-                                            .textHeight(1.5)),
-                                    const VSpace(Sizes.s15),
-                                    OnboardImage3(
-                                      image: "",
-                                    ),
-                                  ],
-                                )
-                              ]).marginOnly(top: Insets.i15),
-                        ),
-                        const HSpace(Sizes.s30),
-                        Expanded(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
+
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -75,21 +53,40 @@ class OnboardScreen extends StatelessWidget {
                                         style: AppCss.outfitMedium18
                                             .textColor(appCtrl.appTheme.dark)
                                             .textHeight(1.5)),
-                                    const VSpace(Sizes.s15),
-                                   const OnboardImage2(
-                                      image: "",
+
+                                    OnboardImage2(
+                                      image: onboardCtrl.imageUrl2,
+                                    ),
+                                  ],
+                                ),
+
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("${fonts.image.tr} 3",
+                                        style: AppCss.outfitMedium18
+                                            .textColor(appCtrl.appTheme.dark)
+                                            .textHeight(1.5)),
+
+                                    OnboardImage3(
+                                      image: onboardCtrl.imageUrl3,
                                     ),
                                   ],
                                 )
                               ]).marginOnly(top: Insets.i15),
                         ),
+                        const HSpace(Sizes.s30),
+
                       ],
                     ).paddingAll(Insets.i30),
                   ).boxExtension1().marginOnly(top: Insets.i15),
                   const VSpace(Sizes.s20),
                   Row(
                     children: [
-                      ...onboardCtrl.selectLanguageLists.asMap().entries.map((e) {
+                      ...onboardCtrl.selectLanguageLists
+                          .asMap()
+                          .entries
+                          .map((e) {
                         return Text(
                           e.value.title.toString().tr,
                           style: AppCss.outfitRegular14.textColor(
@@ -103,11 +100,11 @@ class OnboardScreen extends StatelessWidget {
                                 color: onboardCtrl.selectIndex == e.key
                                     ? appCtrl.appTheme.primary
                                     : appCtrl.appTheme.white,
-                                borderRadius: BorderRadius.circular(AppRadius.r5))
+                                borderRadius:
+                                    BorderRadius.circular(AppRadius.r5))
                             .inkWell(onTap: () {
                           onboardCtrl.selectIndex = e.key;
                           onboardCtrl.update();
-
                         });
                       }).toList()
                     ],
@@ -137,11 +134,19 @@ class OnboardScreen extends StatelessWidget {
                                           ? onboardCtrl.txtGrDesc
                                           : onboardCtrl.txtJpDesc),
                   const VSpace(Sizes.s30),
-                  CommonButton(title: fonts.submit.tr,onTap: ()=> onboardCtrl.addData(),style: AppCss.outfitRegular14.textColor(appCtrl.appTheme.white),)
+                  CommonButton(
+                    icon: onboardCtrl.isLoading ?const CircularProgressIndicator() : Container(),
+                    title:onboardCtrl.id != "" ?fonts.update.tr : fonts.submit.tr,
+                    onTap: () => onboardCtrl.id != "" ?onboardCtrl.updateData() :onboardCtrl.uploadLogoFile(),
+                    style: AppCss.outfitRegular14
+                        .textColor(appCtrl.appTheme.white),
+                  )
                 ]).paddingAll(Insets.i25).boxExtension(),
             GetBuilder<AppController>(builder: (context) {
               return CustomSnackBar(
-                  isAlert: appCtrl.isAlert,text: "Please add all 3 images",);
+                isAlert: appCtrl.isAlert,
+                text: "Please add all 3 images",
+              );
             })
           ],
         ),

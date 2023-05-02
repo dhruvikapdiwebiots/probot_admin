@@ -15,13 +15,7 @@ class SubscriptionList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CommonButton(
-            title: fonts.addSubscription.tr,
-            width: Sizes.s200,
-            onTap: () => usageCtrl.addSubscriptionDialog(),
-            style: AppCss.outfitRegular14.textColor(appCtrl.appTheme.white),
-          ).alignment(Alignment.centerRight),
-          const VSpace(Sizes.s20),
+
           StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection(collectionName.plans)
@@ -33,11 +27,6 @@ class SubscriptionList extends StatelessWidget {
                           SubscriptionWidgetClass().tableWidget(),
                           ...snapShot.data!.docs.asMap().entries.map((e) {
                             return TableRow(children: [
-                              CommonWidgetClass()
-                                  .commonValueText(e.value.id)
-                                  .marginSymmetric(
-                                      vertical: Insets.i15,
-                                      horizontal: Insets.i10),
                               CommonWidgetClass()
                                   .commonValueText(e.value.data()["title"])
                                   .marginSymmetric(vertical: Insets.i15),
@@ -53,10 +42,7 @@ class SubscriptionList extends StatelessWidget {
                                       .onActiveStatusChange(e.value.id, val),
                                   isActive: e.value.data()["isActive"] ?? true),
                               SubscriptionWidgetClass().actionLayout(
-                                  onTap: () => accessDenied(
-                                      fonts.deleteSubscriptionConfirmation.tr,
-                                      onTap: () =>
-                                          usageCtrl.onDeleteData(e.value.id)))
+                                  onTap: () => usageCtrl.addSubscriptionDialog(data: e.value.data()))
                             ]);
                           }).toList()
                         ])

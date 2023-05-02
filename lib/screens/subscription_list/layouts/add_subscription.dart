@@ -51,15 +51,7 @@ class AddSubscriptionLayout extends StatelessWidget {
 
                                         hinText: fonts.price.tr,
                                         controller: subscriptionCtrl.txtPrice),
-                                    const VSpace(Sizes.s15),
-                                    CommonTextBox(
-                                        hinText: fonts.planType.tr,
-                                        controller: subscriptionCtrl.txtPlanType),
-                                    const VSpace(Sizes.s15),
-                                    CommonTextBox(
-                                        hinText: fonts.type.tr,
-                                        controller: subscriptionCtrl.txtType),
-                                    const VSpace(Sizes.s15),
+                                    const VSpace(Sizes.s15)
 
                                   ])),
 
@@ -71,7 +63,7 @@ class AddSubscriptionLayout extends StatelessWidget {
                                   .paddingSymmetric(vertical: Insets.i10)
                                   : Container(),
                               title: fonts.submit.tr,
-                              onTap: () => subscriptionCtrl.addData(),
+                              onTap: () => subscriptionCtrl.updateData(),
                               style: AppCss.outfitRegular14
                                   .textColor(appCtrl.appTheme.white)),
                           const VSpace(Sizes.s15)

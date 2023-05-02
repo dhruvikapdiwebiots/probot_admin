@@ -114,7 +114,29 @@ class Fonts{
   final isCategorySuggestion = "isCategorySuggestion";
   final english = "english";
   final onBoardScreen = "onBoardScreen";
+  final paymentMethod = "paymentMethod";
   final description = "description";
+  final adShowHide = "adShowHide";
+  final googleAdmobEnable = "googleAdmobEnable";
+  final somethingWentWrong = "somethingWentWrong";
+  final facebookAdmobEnable = "facebookAdmobEnable";
+  final facebookAndroidId = "facebookAndroidId";
+  final facebookRewardId = "facebookRewardId";
+  final facebookInterstitialAdId = "facebookInterstitialAdId";
+  final voiceSearchEnable = "voiceSearchEnable";
+  final imageTextSearchEnable = "imageTextSearchEnable";
+  final contentWritingEnable = "contentWritingEnable";
+  final eCommerceDetailEnable = "eCommerceDetailEnable";
+  final asoExpertEnable = "asoExpertEnable";
+  final essayWriterEnable = "essayWriterEnable";
+  final socialMediaEnable = "socialMediaEnable";
+  final marketingAdsEnable = "marketingAdsEnable";
+  final travelEnable = "travelEnable";
+  final translateAnythingEnable = "translateAnythingEnable";
+  final codeGeneratorEnable = "codeGeneratorEnable";
+  final passwordGeneratorEnable = "passwordGeneratorEnable";
+  final personalAdvisorEnable = "personalAdvisorEnable";
+  final emailGeneratorEnable = "emailGeneratorEnable";
 
 
 }

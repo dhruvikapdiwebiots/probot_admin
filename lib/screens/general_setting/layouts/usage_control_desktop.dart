@@ -50,23 +50,23 @@ class UsageControlDesktop extends StatelessWidget {
                                       usageCtrl.commonSwitcherValueChange(
                                           "isRazorPay", val)),
                               DesktopSwitchCommon(
-                                  title: fonts.isTextCompletionEnable,
-                                  value: configModel!.isTextCompletionShow,
-                                  onChanged: (val) =>
-                                      usageCtrl.commonSwitcherValueChange(
-                                          "isTextCompletionShow", val)),
-                              DesktopSwitchCommon(
-                                  title: fonts.isImageGeneratorEnable,
-                                  value: configModel!.isImageGeneratorShow,
-                                  onChanged: (val) =>
-                                      usageCtrl.commonSwitcherValueChange(
-                                          "isImageGeneratorShow", val)),
-                              DesktopSwitchCommon(
-                                  isDivider: true,
                                   title: fonts.isRTL,
                                   value: configModel!.isRTL,
                                   onChanged: (val) => usageCtrl
                                       .commonSwitcherValueChange("isRTL", val)),
+                              DesktopSwitchCommon(
+                                  title: fonts.isChatHistoryEnable,
+                                  value: configModel!.isChatHistory,
+                                  onChanged: (val) =>
+                                      usageCtrl.commonSwitcherValueChange(
+                                          "isChatHistory", val)),
+                              DesktopSwitchCommon(
+                                  isDivider: true,
+                                  title: fonts.voiceSearchEnable,
+                                  value: configModel!.isVoiceEnable,
+                                  onChanged: (val) =>
+                                      usageCtrl.commonSwitcherValueChange(
+                                          "isVoiceEnable", val)),
                             ]),
                       ),
                       VerticalDivider(
@@ -77,18 +77,7 @@ class UsageControlDesktop extends StatelessWidget {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                            DesktopSwitchCommon(
-                                title: fonts.isAddEnable,
-                                value: configModel!.isAddShow,
-                                onChanged: (val) =>
-                                    usageCtrl.commonSwitcherValueChange(
-                                        "isAddShow", val)),
-                            DesktopSwitchCommon(
-                                title: fonts.isChatHistoryEnable,
-                                value: configModel!.isChatHistory,
-                                onChanged: (val) =>
-                                    usageCtrl.commonSwitcherValueChange(
-                                        "isChatHistory", val)),
+
                             DesktopSwitchCommon(
                                 title: fonts.isChatEnable,
                                 value: configModel!.isChatShow,
@@ -96,11 +85,11 @@ class UsageControlDesktop extends StatelessWidget {
                                     usageCtrl.commonSwitcherValueChange(
                                         "isChatShow", val)),
                             DesktopSwitchCommon(
-                                title: fonts.isGoogleAdmobEnable,
-                                value: configModel!.isGoogleAdmobEnable,
+                                title: fonts.isImageGeneratorEnable,
+                                value: configModel!.isImageGeneratorShow,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
-                                        "isGoogleAdmobEnable", val)),
+                                        "isImageGeneratorShow", val)),
                             DesktopSwitchCommon(
                                 title: fonts.isTheme,
                                 value: configModel!.isTheme,
@@ -112,6 +101,12 @@ class UsageControlDesktop extends StatelessWidget {
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
                                         "isCategorySuggestion", val)),
+                            DesktopSwitchCommon(
+                                title: fonts.imageTextSearchEnable,
+                                value: configModel!.isCameraEnable,
+                                onChanged: (val) =>
+                                    usageCtrl.commonSwitcherValueChange(
+                                        "isCameraEnable", val)),
                             DesktopSwitchCommon(
                                 isDivider: true,
                                 title: fonts.isGuestLoginEnable,

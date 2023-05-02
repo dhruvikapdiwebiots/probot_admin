@@ -1,6 +1,5 @@
-import 'package:probot_admin/controllers/app_pages_controller/category_access_controller.dart';
+
 import 'package:probot_admin/models/category_access_model.dart';
-import 'package:probot_admin/models/firebase_config.dart';
 
 import '../../../../config.dart';
 
@@ -28,47 +27,36 @@ class CategoryAccessDesktop extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               DesktopSwitchCommon(
-                                  title: fonts.isStripeEnable,
-                                  value: configModel!.isStripe,
+                                  title: fonts.contentWritingEnable,
+                                  value: configModel!.isContentWritingEnable,
                                   onChanged: (val) =>
                                       usageCtrl.commonSwitcherValueChange(
-                                          "isStripe", val)),
+                                          "isContentWritingEnable", val)),
                               DesktopSwitchCommon(
-                                  title: fonts.isPayPalEnable,
-                                  value: configModel!.isPaypal,
+                                  title: fonts.essayWriterEnable,
+                                  value: configModel!.isEssayWriterEnable,
                                   onChanged: (val) =>
                                       usageCtrl.commonSwitcherValueChange(
-                                          "isPayPal", val)),
+                                          "isEssayWriterEnable", val)),
                               DesktopSwitchCommon(
-                                  title: fonts.isInAppEnable,
-                                  value: configModel!.isInApp,
+                                  title: fonts.socialMediaEnable,
+                                  value: configModel!.isSocialMediaEnable,
                                   onChanged: (val) =>
                                       usageCtrl.commonSwitcherValueChange(
-                                          "isInApp", val)),
+                                          "isSocialMediaEnable", val)),
                               DesktopSwitchCommon(
-                                  title: fonts.isRazorPayEnable,
-                                  value: configModel!.isRazorPay,
+                                  title: fonts.emailGeneratorEnable,
+                                  value: configModel!.isEmailGeneratorEnable,
                                   onChanged: (val) =>
                                       usageCtrl.commonSwitcherValueChange(
-                                          "isRazorPay", val)),
+                                          "isEmailGeneratorEnable", val)),
                               DesktopSwitchCommon(
-                                  title: fonts.isTextCompletionEnable,
-                                  value: configModel!.isTextCompletionShow,
+                                  title: fonts.travelEnable,
+                                  value: configModel!.isTravelEnable,
                                   onChanged: (val) =>
                                       usageCtrl.commonSwitcherValueChange(
-                                          "isTextCompletionShow", val)),
-                              DesktopSwitchCommon(
-                                  title: fonts.isImageGeneratorEnable,
-                                  value: configModel!.isImageGeneratorShow,
-                                  onChanged: (val) =>
-                                      usageCtrl.commonSwitcherValueChange(
-                                          "isImageGeneratorShow", val)),
-                              DesktopSwitchCommon(
-                                  isDivider: true,
-                                  title: fonts.isRTL,
-                                  value: configModel!.isRTL,
-                                  onChanged: (val) => usageCtrl
-                                      .commonSwitcherValueChange("isRTL", val)),
+                                          "isTravelEnable", val)),
+
                             ]),
                       ),
                       VerticalDivider(
@@ -80,54 +68,36 @@ class CategoryAccessDesktop extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                             DesktopSwitchCommon(
-                                title: fonts.isAddEnable,
-                                value: configModel!.isAddShow,
+                                title: fonts.passwordGeneratorEnable,
+                                value: configModel!.isPasswordGeneratorEnable,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
-                                        "isAddShow", val)),
+                                        "isPasswordGeneratorEnable", val)),
+
                             DesktopSwitchCommon(
-                                title: fonts.isChatHistoryEnable,
-                                value: configModel!.isChatHistory,
+                                title: fonts.codeGeneratorEnable,
+                                value: configModel!.isCodeGeneratorEnable,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
-                                        "isChatHistory", val)),
+                                        "isCodeGeneratorEnable", val)),
                             DesktopSwitchCommon(
-                                title: fonts.isChatEnable,
-                                value: configModel!.isCodeGenerator,
+                                title: fonts.personalAdvisorEnable,
+                                value: configModel!.isPersonalAdvisorEnable,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
-                                        "isChatShow", val)),
+                                        "isPersonalAdvisorEnable", val)),
                             DesktopSwitchCommon(
-                                title: fonts.isGoogleAdmobEnable,
-                                value: configModel!.isGoogleAdmobEnable,
+                                title: fonts.translateAnythingEnable,
+                                value: configModel!.isTranslateAnythingEnable,
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
-                                        "isGoogleAdmobEnable", val)),
-                            DesktopSwitchCommon(
-                                title: fonts.isTheme,
-                                value: configModel!.isTheme,
-                                onChanged: (val) => usageCtrl
-                                    .commonSwitcherValueChange("isTheme", val)),
-                            DesktopSwitchCommon(
-                                title: fonts.isCategorySuggestion,
-                                value: configModel!.isCategorySuggestion,
-                                onChanged: (val) =>
-                                    usageCtrl.commonSwitcherValueChange(
-                                        "isCategorySuggestion", val)),
-                            DesktopSwitchCommon(
-                                isDivider: true,
-                                title: fonts.isGuestLoginEnable,
-                                value: configModel!.isGuestLoginEnable,
-                                onChanged: (val) =>
-                                    usageCtrl.commonSwitcherValueChange(
-                                        "isGuestLoginEnable", val))
+                                        "isTranslateAnythingEnable", val)),
                           ]))
                     ]).marginOnly(top: Insets.i15))
               ])
               .paddingAll(Insets.i30)
               .boxExtension1()
               .marginOnly(top: Insets.i15),
-
         ],
       );
     });

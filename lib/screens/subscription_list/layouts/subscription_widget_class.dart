@@ -9,7 +9,6 @@ class SubscriptionWidgetClass {
         color: Color.fromRGBO(53, 193, 255, 0.07),
       ),
       children: [
-        CommonWidgetClass().commonTitleText(fonts.id),
         CommonWidgetClass().commonTitleText(fonts.title),
         CommonWidgetClass().commonTitleText(fonts.price),
         CommonWidgetClass().commonTitleText(fonts.type),
@@ -20,7 +19,7 @@ class SubscriptionWidgetClass {
   //action layout
   Widget actionLayout({GestureTapCallback? onTap}) =>
       Column(children: [
-        Icon(Icons.delete,
+        Icon(Icons.edit,
             color: appCtrl.appTheme.primary)
             .inkWell(onTap:onTap)
       ]).marginSymmetric(vertical: Insets.i15);

@@ -19,11 +19,11 @@ class UserMobileLayout extends StatelessWidget {
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(AppRadius.r50),
                             child: Image.network(e.value.data()["image"],
-                                height: Sizes.s50))
+                                height: Sizes.s50,width: Sizes.s50,fit: BoxFit.fill,))
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(AppRadius.r50),
                             child: Image.asset(imageAssets.addUser,
-                                height: Sizes.s50)),
+                                height: Sizes.s50,width: Sizes.s50,fit: BoxFit.fill)),
                     const HSpace(Sizes.s10),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

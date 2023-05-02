@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                                                 overflow: TextOverflow.clip,
                                                 style: AppCss.outfitMedium34
                                                     .textColor(
-                                                        appCtrl.appTheme.whiteColor)),
+                                                        appCtrl.appTheme.white)),
                                             const VSpace(Sizes.s15),
                                             Text(
                                               "Get better experience by using  Probot web app",

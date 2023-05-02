@@ -23,6 +23,7 @@ class AppArray{
     {'icon': svgAssets.dashboard, 'title': "dashboard"},
     {'icon': svgAssets.people, 'title': "users"},
     {'icon': svgAssets.userSubscribe, 'title': "subscribeUser"},
+    {'icon': svgAssets.userSubscribe, 'title': "topUpUsers"},
     {'icon': svgAssets.crown, 'title': "subscription"},
     {'icon': svgAssets.android, 'title': "character"},
     {'icon': svgAssets.category, 'title': "category"},

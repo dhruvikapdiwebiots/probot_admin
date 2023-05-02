@@ -3,10 +3,10 @@ import 'package:intl/intl.dart';
 
 import '../../../config.dart';
 
-class UserSubscribeMobileLayout extends StatelessWidget {
+class TopUpUserMobile extends StatelessWidget {
   final AsyncSnapshot<dynamic>? snapShot;
 
-  const UserSubscribeMobileLayout({Key? key, this.snapShot}) : super(key: key);
+  const TopUpUserMobile({Key? key, this.snapShot}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +21,19 @@ class UserSubscribeMobileLayout extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(children: [
-                          CommonWidgetClass().commonValueText("Email - "),
+                          CommonWidgetClass().commonValueText("${fonts.email.tr} - "),
                           CommonWidgetClass().commonValueText(
                               e.value.data()["email"] ?? "-"),
                         ]),
                         Row(children: [
-                          CommonWidgetClass().commonValueText("Name - "),
+                          CommonWidgetClass().commonValueText("${fonts.name.tr} - "),
                           CommonWidgetClass().commonValueText(
                               e.value.data()["name"] ?? "Not Defined")
                         ]).marginSymmetric(vertical: Insets.i5),
                         Row(children: [
-                          CommonWidgetClass().commonValueText("Subscription Type - "),
+                          CommonWidgetClass().commonValueText("${fonts.price.tr} - "),
                           CommonWidgetClass().commonValueText(
-                              e.value.data()["subscriptionType"] ?? "Not Defined")
+                              e.value.data()["price"].toString() ?? "Not Defined")
                         ])
                       ]),
                   Column(
@@ -41,10 +41,13 @@ class UserSubscribeMobileLayout extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         CommonWidgetClass()
-                            .commonValueText(DateFormat("dd/MM/yyyy").format(
-                            DateTime.parse(
-                                e.value.data()["expiryDate"].toDate().toString()))),
+                            .commonValueText(
+                                e.value.data()["paymentMethod"]),
+
                         const VSpace(Sizes.s5),
+                        CommonWidgetClass()
+                            .commonValueText(
+                            e.value.data()["balance"].toString()),
                       ])
                 ]).paddingAll(Insets.i10),
           ).marginOnly(bottom: Insets.i15);

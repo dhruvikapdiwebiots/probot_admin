@@ -6,6 +6,7 @@ class SubscriptionListController extends GetxController {
   dynamic usageCtrl;
   bool isLoading = false;
   bool isAlert = false;
+  String id ="";
   TextEditingController txtTitle = TextEditingController();
   TextEditingController txtPlanType = TextEditingController();
   TextEditingController txtPrice = TextEditingController();
@@ -15,8 +16,8 @@ class SubscriptionListController extends GetxController {
   //get data from firebase
   getData() async {}
 
-  //add data
-  addData() async {
+  //update data
+  updateData() async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
@@ -24,12 +25,9 @@ class SubscriptionListController extends GetxController {
       isLoading = true;
       log("usage2: $usageCtrl");
       update();
-      await FirebaseFirestore.instance.collection(collectionName.plans).add({
-        "planType": txtPlanType.text,
+      await FirebaseFirestore.instance.collection(collectionName.plans).doc(id).update({
         "price": int.parse(txtPrice.text),
-        "title": txtTitle.text,
-        "type": txtType.text,
-        "isActive": true
+        "title": txtTitle.text
       }).then((value) {
         log("usage3: $usageCtrl");
         Get.back();
@@ -40,7 +38,9 @@ class SubscriptionListController extends GetxController {
     }
   }
 
-  addSubscriptionDialog() {
+  addSubscriptionDialog({data}) {
+    txtTitle.text = data["title"];
+    txtPrice.text = data["price"].toString();
     showDialog(
         context: Get.context!,
         builder: (BuildContext context) {

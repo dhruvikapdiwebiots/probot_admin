@@ -64,7 +64,7 @@ class UserSubscribeController extends GetxController {
     log.log("txtSearch.text : $lastIndexId");
     Stream<QuerySnapshot<Map<String, dynamic>>> event = FirebaseFirestore
         .instance
-        .collection("userSubscribe")
+        .collection("userSubscribe").where("isSubscribe",isEqualTo: false)
         .where("email", isEqualTo: txtSearch.text)
         .limit(currentPerPage!)
         .snapshots();

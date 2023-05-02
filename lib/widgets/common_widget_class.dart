@@ -6,7 +6,9 @@ class CommonWidgetClass {
         children: [
           Text(
             title.toString().tr.toUpperCase(),
-            style: AppCss.outfitMedium16.textColor(appCtrl.isTheme ?appCtrl.appTheme.white : appCtrl.appTheme.secondary),
+            style: AppCss.outfitMedium16.textColor(appCtrl.isTheme
+                ? appCtrl.appTheme.white
+                : appCtrl.appTheme.secondary),
           ),
         ],
       ).paddingSymmetric(vertical: Insets.i20);
@@ -16,14 +18,24 @@ class CommonWidgetClass {
         children: [
           isImage
               ? value != null
-                  ? Image.network(value,height: Sizes.s50,)
-                  : Text("NO IMAGE UPLOADED",
-                      style: AppCss.outfitRegular14
-                          .textColor( appCtrl.appTheme.blackColor))
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(AppRadius.r50),
+                      child: Image.network(
+                        value,
+                        height: Sizes.s50,
+                        width: Sizes.s50,
+                        fit: BoxFit.fill,
+                      ))
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(AppRadius.r50),
+                      child: Image.asset(imageAssets.addUser,
+                          height: Sizes.s50,
+                          width: Sizes.s50,
+                          fit: BoxFit.fill))
               : Text(
                   value,
                   style: AppCss.outfitRegular14
-                      .textColor( appCtrl.appTheme.blackColor),
+                      .textColor(appCtrl.appTheme.blackColor),
                 )
         ],
       );

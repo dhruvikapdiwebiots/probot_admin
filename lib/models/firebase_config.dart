@@ -1,5 +1,4 @@
 
-import 'package:probot_admin/common/config.dart';
 
 class FirebaseConfigModel {
   String? bannerAddId,
@@ -23,7 +22,7 @@ class FirebaseConfigModel {
       facebookInterstitialAd,
       facebookRewardAd,
       splashLogo,drawerLogo,homeLogo;
-  bool? isChatShow,isCategorySuggestion;
+  bool? isChatShow,isCategorySuggestion,isVoiceEnable,isCameraEnable;
   bool? isImageGeneratorShow;
   int? balance;
   bool? isTextCompletionShow;
@@ -35,6 +34,7 @@ class FirebaseConfigModel {
       isInApp,
       isChatHistory,
       isGuestLoginEnable,
+      isFacebookAdEnable,
       isGoogleAdmobEnable;
 
   FirebaseConfigModel(
@@ -55,6 +55,7 @@ class FirebaseConfigModel {
       this.isImageGeneratorShow,
       this.rewardAndroidId,
       this.rewardIOSId,
+      this.isFacebookAdEnable,
       this.razorPayKey,
       this.razorPaySecret,
       this.facebookAddAndroidId,
@@ -68,6 +69,8 @@ class FirebaseConfigModel {
       this.isPaypal,
       this.isRTL,
       this.isCategorySuggestion,
+      this.isVoiceEnable,
+      this.isCameraEnable,
       this.isInApp,
       this.isRazorPay,
       this.isStripe,
@@ -102,7 +105,10 @@ class FirebaseConfigModel {
     isChatShow = json['isChatShow'] ?? true;
     isImageGeneratorShow = json['isImageGeneratorShow'] ?? true;
     isTextCompletionShow = json['isTextCompletionShow'] ?? true;
+    isFacebookAdEnable = isFacebookAdEnable == true ? false : true;
     isCategorySuggestion = json['isCategorySuggestion'] ?? true;
+    isVoiceEnable = json['isVoiceEnable'] ?? true;
+    isCameraEnable = json['isCameraEnable'] ?? true;
     isRTL = json['isRTL'] ?? false;
     isChatHistory = json['isChatHistory'] ?? true;
     isAddShow = json['isAddShow'] ?? true;
@@ -143,6 +149,9 @@ class FirebaseConfigModel {
     data['isImageGeneratorShow'] = isImageGeneratorShow;
     data['isTextCompletionShow'] = isTextCompletionShow;
     data['isCategorySuggestion'] = isCategorySuggestion;
+    data['isVoiceEnable'] = isVoiceEnable;
+    data['isCameraEnable'] = isCameraEnable;
+    data['isFacebookAdEnable'] = isFacebookAdEnable;
     data['isAddShow'] = isAddShow;
     data['isStripe'] = isStripe;
     data['isPayPal'] = isPaypal;
