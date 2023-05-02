@@ -92,7 +92,7 @@ class OnboardScreen extends StatelessWidget {
                           style: AppCss.outfitRegular14.textColor(
                               onboardCtrl.selectIndex == e.key
                                   ? appCtrl.appTheme.white
-                                  : appCtrl.appTheme.blackColor),
+                                  : appCtrl.appTheme.blackColor1),
                         )
                             .paddingSymmetric(
                                 horizontal: Insets.i15, vertical: Insets.i10)
@@ -101,7 +101,7 @@ class OnboardScreen extends StatelessWidget {
                                     ? appCtrl.appTheme.primary
                                     : appCtrl.appTheme.white,
                                 borderRadius:
-                                    BorderRadius.circular(AppRadius.r5))
+                                    BorderRadius.circular(AppRadius.r5)).marginOnly(right: Insets.i10)
                             .inkWell(onTap: () {
                           onboardCtrl.selectIndex = e.key;
                           onboardCtrl.update();

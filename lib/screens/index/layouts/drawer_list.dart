@@ -39,16 +39,18 @@ class DrawerList extends StatelessWidget {
                               const HSpace(Sizes.s20),
                               Responsive.isDesktop(context) && value == false
                                   ? Container()
-                                  : Text(e.value["title"] != null? e.value["title"].toString().tr:"",
-                                      style: AppCss.outfitMedium14.textColor(
-                                          indexCtrl.selectedIndex == e.key
-                                              ? appCtrl.appTheme.white
-                                              : indexCtrl.isHover &&
-                                                      indexCtrl
-                                                              .isSelectedHover ==
-                                                          e.key
-                                                  ? appCtrl.appTheme.white
-                                                  : appCtrl.appTheme.txt))
+                                  : Expanded(
+                                child: Text(e.value["title"] != null? e.value["title"].toString().tr:"",
+                                        style: AppCss.outfitMedium14.textColor(
+                                            indexCtrl.selectedIndex == e.key
+                                                ? appCtrl.appTheme.white
+                                                : indexCtrl.isHover &&
+                                                        indexCtrl
+                                                                .isSelectedHover ==
+                                                            e.key
+                                                    ? appCtrl.appTheme.white
+                                                    : appCtrl.appTheme.txt)),
+                                  )
                             ]))
                   .inkWell(onTap: () {
                     indexCtrl.selectedIndex = e.key;

@@ -202,4 +202,7 @@ final dynamic en = {
   "passwordGeneratorEnable": "Password Generator Enable",
   "personalAdvisorEnable": "Personal Advisor Enable",
   "emailGeneratorEnable": "Email Generator Enable",
+  "categorySuggestion": "Category Suggestion",
+  "enterYourSuggestion": "Enter your Suggestion",
+  "addSuggestion": "Add Suggestion",
 };

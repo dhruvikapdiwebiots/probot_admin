@@ -136,6 +136,8 @@ class Fonts{
   final codeGeneratorEnable = "codeGeneratorEnable";
   final passwordGeneratorEnable = "passwordGeneratorEnable";
   final personalAdvisorEnable = "personalAdvisorEnable";
+  final enterYourSuggestion = "enterYourSuggestion";
+  final addSuggestion = "addSuggestion";
   final emailGeneratorEnable = "emailGeneratorEnable";
 
 

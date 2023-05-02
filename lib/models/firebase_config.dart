@@ -21,6 +21,9 @@ class FirebaseConfigModel {
       facebookAddAndroidId,
       facebookInterstitialAd,
       facebookRewardAd,
+      facebookAddIOSId,
+      facebookInterstitialIOSAd,
+      facebookRewardIOSAd,
       splashLogo,drawerLogo,homeLogo;
   bool? isChatShow,isCategorySuggestion,isVoiceEnable,isCameraEnable;
   bool? isImageGeneratorShow;
@@ -61,6 +64,9 @@ class FirebaseConfigModel {
       this.facebookAddAndroidId,
       this.facebookInterstitialAd,
       this.facebookRewardAd,
+      this.facebookAddIOSId,
+      this.facebookInterstitialIOSAd,
+      this.facebookRewardIOSAd,
       this.splashLogo,
       this.drawerLogo,
       this.homeLogo,
@@ -98,10 +104,13 @@ class FirebaseConfigModel {
     rateAppIOSId = json['rateAppIOSId'] ?? "";
     facebookAddAndroidId = json['facebookAddAndroidId'] ?? "";
     facebookInterstitialAd = json['facebookInterstitialAd'] ?? "";
+    facebookRewardAd = json['facebookRewardAd'] ?? "";
+    facebookAddIOSId = json['facebookAddIOSId'] ?? "";
+    facebookInterstitialIOSAd = json['facebookInterstitialIOSAd'] ?? "";
+    facebookRewardIOSAd = json['facebookRewardIOSAd'] ?? "";
     splashLogo = json['splashLogo'] ?? "";
     drawerLogo = json['drawerLogo'] ?? "";
     homeLogo = json['homeLogo'] ?? "";
-    facebookRewardAd = json['facebookRewardAd'] ?? "";
     isChatShow = json['isChatShow'] ?? true;
     isImageGeneratorShow = json['isImageGeneratorShow'] ?? true;
     isTextCompletionShow = json['isTextCompletionShow'] ?? true;
@@ -142,6 +151,9 @@ class FirebaseConfigModel {
     data['facebookAddAndroidId'] = facebookAddAndroidId;
     data['facebookInterstitialAd'] = facebookInterstitialAd;
     data['facebookRewardAd'] = facebookRewardAd;
+    data['facebookAddIOSId'] = facebookAddIOSId;
+    data['facebookInterstitialIOSAd'] = facebookInterstitialIOSAd;
+    data['facebookRewardIOSAd'] = facebookRewardIOSAd;
     data['splashLogo'] = splashLogo;
     data['drawerLogo'] = drawerLogo;
     data['homeLogo'] = homeLogo;

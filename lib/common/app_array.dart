@@ -27,6 +27,7 @@ class AppArray{
     {'icon': svgAssets.crown, 'title': "subscription"},
     {'icon': svgAssets.android, 'title': "character"},
     {'icon': svgAssets.category, 'title': "category"},
+    {'icon': svgAssets.category, 'title': "categorySuggestion"},
     {'icon': svgAssets.onBoard, 'title': "onBoardScreen"},
     {'icon': svgAssets.setting, 'title': "generalSetting"},
     {'icon': svgAssets.aboutUs, 'title': "aboutsUs"},
