@@ -49,19 +49,19 @@ class AddOnboard extends StatelessWidget {
                              style: AppCss.outfitMedium12
                                  .textColor(appCtrl.appTheme.blackColor)),
                          const VSpace(Sizes.s10),
-                         OnboardImage1(image: "",),
+                         OnboardImage1(image: onboardCtrl.imageUrl,),
                          const VSpace(Sizes.s15),
                          Text("${fonts.image.tr} 2",
                              style: AppCss.outfitMedium12
                                  .textColor(appCtrl.appTheme.blackColor)),
                          const VSpace(Sizes.s10),
-                         OnboardImage2(image: "",),
+                         OnboardImage2(image: onboardCtrl.imageUrl2,),
                          const VSpace(Sizes.s20),
                          Text("${fonts.image.tr} 3",
                              style: AppCss.outfitMedium12
                                  .textColor(appCtrl.appTheme.blackColor)),
                          const VSpace(Sizes.s10),
-                         OnboardImage3(image: "",),
+                         OnboardImage3(image: onboardCtrl.imageUrl3,),
                          const VSpace(Sizes.s15),
                          Text("Please Select Language for Onboard Title",
                              style: AppCss.outfitMedium12

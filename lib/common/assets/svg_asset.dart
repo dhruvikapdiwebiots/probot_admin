@@ -2,6 +2,7 @@ class SvgAssets{
   final String banner = 'assets/svg/banner.svg';
   final String bell = 'assets/svg/bell.svg';
   final String dashboard = 'assets/svg/dashboard.svg';
+  final String dashboardDark = 'assets/svg/dashboardDark.svg';
   final String language = 'assets/svg/language.svg';
   final String logout = 'assets/svg/logout.svg';
   final String usageControl = 'assets/svg/usageControl.svg';
@@ -14,17 +15,27 @@ class SvgAssets{
   final String groups = 'assets/svg/totalUser.svg';
   final String videoCall = 'assets/svg/videoCalls.svg';
   final String android = 'assets/svg/android.svg';
+  final String androidDark = 'assets/svg/androidDark.svg';
   final String audioCall = 'assets/svg/audioCalls.svg';
   final String setting = 'assets/svg/setting.svg';
+  final String settingDark = 'assets/svg/settingDark.svg';
   final String addUser = 'assets/svg/addUser.svg';
   final String light = 'assets/svg/light.svg';
   final String dropDown = 'assets/svg/dropDown.svg';
   final String languages = 'assets/svg/languages.svg';
   final String people = 'assets/svg/people.svg';
+  final String peopleDark = 'assets/svg/peopleDark.svg';
   final String userSubscribe = 'assets/svg/userSubscribe.svg';
+  final String userSubscribeDark = 'assets/svg/userSubscribeDark.svg';
   final String aboutUs = 'assets/svg/aboutUs.svg';
+  final String aboutUsDark = 'assets/svg/aboutUsDark.svg';
   final String crown = 'assets/svg/crown.svg';
+  final String crownDark = 'assets/svg/crownDark.svg';
   final String category = 'assets/svg/category.svg';
+  final String categoryDark = 'assets/svg/categoryDark.svg';
   final String onBoard = 'assets/svg/onBoard.svg';
+  final String onBoardDark = 'assets/svg/onBoardDark.svg';
+  final String suggestion = 'assets/svg/suggestion.svg';
+  final String suggestionDark = 'assets/svg/suggestionDark.svg';
 
 }

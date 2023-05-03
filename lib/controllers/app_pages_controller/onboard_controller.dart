@@ -91,6 +91,7 @@ class OnboardController extends GetxController {
             txtJpDesc.text = element.value["description"];
           }
         });
+        update();
       }
 
     });

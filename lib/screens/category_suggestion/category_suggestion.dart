@@ -14,44 +14,44 @@ class CategorySuggestion extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CommonTextBox(
-              validator: (number) => Validation().statusValidation(number),
-              hinText: fonts.title,
-              controller: suggestionCtrl.txtTitle),
-          const VSpace(Sizes.s20),
           Form(
             key: suggestionCtrl.formKey,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              //  MyForm(),
+              CommonTextBox(
+                  validator: (number) => Validation().statusValidation(number),
+                  hinText: fonts.title,
+                  controller: suggestionCtrl.txtTitle),
+              const VSpace(Sizes.s20),
               // name textfield
-              DefaultTextField(
-                validator: (number) => Validation().statusValidation(number),
-                title: fonts.enterYourSuggestion,
-                controller: suggestionCtrl.suggestionController,
-                addButtonWidget: suggestionCtrl
-                    .addRemoveButton(suggestionCtrl.suggestionList.isEmpty, 0)
-                    .alignment(Alignment.bottomCenter),
-              ),
-              const VSpace(Sizes.s16),
+
               ...suggestionCtrl.getSuggestions(),
               const VSpace(Sizes.s40),
               CommonButton(
                 margin: 0,
-
-                title: fonts.addSuggestion.tr,
+                icon: suggestionCtrl.isLoading
+                    ? CircularProgressIndicator(
+                        color: appCtrl.appTheme.white,
+                      )
+                    : Container(),
+                onTap: () {
+                  if (suggestionCtrl.formKey.currentState!.validate()) {
+                    suggestionCtrl.formKey.currentState!.save();
+                    if (suggestionCtrl.docId != "") {
+                      suggestionCtrl.updateSuggestion();
+                    } else {
+                      suggestionCtrl.addSuggestion();
+                    }
+                  }
+                  suggestionCtrl.update();
+                },
+                title: suggestionCtrl.docId != ""
+                    ? fonts.updateSuggestion.tr
+                    : fonts.addSuggestion.tr,
                 style: AppCss.outfitMedium16.textColor(appCtrl.appTheme.white),
                 width: Sizes.s200,
               )
-              /*InkWell(
-                    onTap: (){
-                      if(suggestionCtrl.formKey.currentState!.validate()){
-                        suggestionCtrl.formKey.currentState!.save();
-
-                      }
-                    },
-                    child: Text('Submit'),
-
-                  )*/
             ]),
           )
         ],

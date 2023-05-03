@@ -12,7 +12,6 @@ class LoginController extends GetxController {
 
   // Sign in
   signIn(context) async {
-
     if (formKey.currentState!.validate()) {
       await FirebaseFirestore.instance
           .collection(collectionName.admin)

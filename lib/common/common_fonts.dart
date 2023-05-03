@@ -139,6 +139,8 @@ class Fonts{
   final enterYourSuggestion = "enterYourSuggestion";
   final addSuggestion = "addSuggestion";
   final emailGeneratorEnable = "emailGeneratorEnable";
+  final suggestionList = "suggestionList";
+  final updateSuggestion = "updateSuggestion";
 
 
 }

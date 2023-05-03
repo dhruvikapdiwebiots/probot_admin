@@ -49,14 +49,13 @@ class CharactersController extends GetxController {
             .update({
           "message": txtMessage.text,
           "image": imageUrl,
-          "title": txtTitle.text,
-
+          "title": txtTitle.text
         }).then((value) {
-          webImage =Uint8List(8);
-          pickImage =null;
+          webImage = Uint8List(8);
+          pickImage = null;
           imageUrl = "";
-          pickImage =null;
-          imageFile =null;
+          pickImage = null;
+          imageFile = null;
 
           log("usage3: $usageCtrl");
           Get.back();
@@ -65,9 +64,7 @@ class CharactersController extends GetxController {
         });
         update();
       } else {
-        int id = DateTime
-            .now()
-            .millisecondsSinceEpoch;
+        int id = DateTime.now().millisecondsSinceEpoch;
         update();
         await FirebaseFirestore.instance
             .collection(collectionName.characters)
@@ -80,11 +77,11 @@ class CharactersController extends GetxController {
           "id": id
         }).then((value) {
           log("usage3: $usageCtrl");
-          webImage =Uint8List(8);
-          pickImage =null;
+          webImage = Uint8List(8);
+          pickImage = null;
           imageUrl = "";
-          pickImage =null;
-          imageFile =null;
+          pickImage = null;
+          imageFile = null;
           Get.back();
           isLoading = false;
           update();
@@ -93,7 +90,6 @@ class CharactersController extends GetxController {
       }
     }
   }
-
 
   //on click Image
   onImagePickUp(setState, context) {
@@ -189,29 +185,35 @@ class CharactersController extends GetxController {
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
-      isLoading = true;
-      if (pickImage != null) {
-        update();
-        String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-        Reference reference = FirebaseStorage.instance.ref().child(fileName);
-        log("reference : $webImage");
-        UploadTask? uploadTask;
-        uploadTask = reference.putData(webImage);
+      if (imageUrl == "") {
+        isLoading = true;
+        if (pickImage != null) {
+          update();
+          String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+          Reference reference = FirebaseStorage.instance.ref().child(fileName);
+          log("reference : $webImage");
+          UploadTask? uploadTask;
+          uploadTask = reference.putData(webImage);
 
-        uploadTask.then((res) async {
-          log("res : $res");
-          res.ref.getDownloadURL().then((downloadUrl) async {
-            imageUrl = downloadUrl;
-            log("imageUrl : $imageUrl");
-            update();
-            await Future.delayed(Durations.s3);
+          uploadTask.then((res) async {
+            log("res : $res");
+            res.ref.getDownloadURL().then((downloadUrl) async {
+              imageUrl = downloadUrl;
+              log("imageUrl : $imageUrl");
+              update();
+              await Future.delayed(Durations.s3);
 
-            addData();
-          }, onError: (err) {
-            update();
+              addData();
+            }, onError: (err) {
+              update();
+            });
           });
-        });
+        } else {
+          addData();
+        }
       } else {
+        isLoading = true;
+        update();
         addData();
       }
     }
@@ -242,14 +244,14 @@ class CharactersController extends GetxController {
         });
   }
 
-  isActiveChange(id,value)async {
+  isActiveChange(id, value) async {
     await FirebaseFirestore.instance
         .collection(collectionName.characters)
         .doc(id)
         .update({"isActive": value});
   }
 
-  deleteData(id)async {
+  deleteData(id) async {
     await FirebaseFirestore.instance
         .collection(collectionName.characters)
         .doc(id)

@@ -205,4 +205,6 @@ final dynamic en = {
   "categorySuggestion": "Category Suggestion",
   "enterYourSuggestion": "Enter your Suggestion",
   "addSuggestion": "Add Suggestion",
+  "updateSuggestion": "Update Suggestion",
+  "suggestionList": "Suggestion List",
 };

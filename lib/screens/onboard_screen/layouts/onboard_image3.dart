@@ -28,7 +28,7 @@ class OnboardImage3 extends StatelessWidget {
                 onboardCtrl.onboardPickImage3 != null &&
                 onboardCtrl.onboardWebImage3.isNotEmpty
             ? CommonDottedBorder(
-                    child: Image.memory(onboardCtrl.onboardWebImage3, fit: BoxFit.fill))
+                    child: Image.memory(onboardCtrl.onboardWebImage3, fit: BoxFit.fill,height: Sizes.s150,width: Sizes.s150))
                 .inkWell(
                     onTap: () => onboardCtrl.getImage(
                         source: ImageSource.gallery,
@@ -37,7 +37,7 @@ class OnboardImage3 extends StatelessWidget {
             : image!.isNotEmpty
                 ? CommonDottedBorder(
                     child: Image.network(
-                    image!,
+                    image!,height: Sizes.s150,width: Sizes.s150
                   )).inkWell(
                     onTap: () => onboardCtrl.getImage(
                         source: ImageSource.gallery,
@@ -49,7 +49,7 @@ class OnboardImage3 extends StatelessWidget {
                             setState, context, "image3"))
                     : CommonDottedBorder(
                             child: Image.memory(onboardCtrl.onboardWebImage3,
-                                fit: BoxFit.fill))
+                                fit: BoxFit.fill,height: Sizes.s150,width: Sizes.s150))
                         .inkWell(
                             onTap: () => onboardCtrl.getImage(
                                 source: ImageSource.gallery,

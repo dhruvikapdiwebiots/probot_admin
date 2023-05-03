@@ -2,9 +2,9 @@
 
 import '../../../config.dart';
 
-class CharacterListTable extends StatelessWidget {
+class SuggestionListTable extends StatelessWidget {
   final List<TableRow>? children;
-  const CharacterListTable({Key? key,this .children}) : super(key: key);
+  const SuggestionListTable({Key? key,this .children}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,7 @@ class CharacterListTable extends StatelessWidget {
           1: FlexColumnWidth(),
           2: IntrinsicColumnWidth(flex: 1),
           3: FlexColumnWidth(),
-          4: FlexColumnWidth(),
-          5: FlexColumnWidth()
+          4: FlexColumnWidth()
         },
         children: children!,
       ).decorated(

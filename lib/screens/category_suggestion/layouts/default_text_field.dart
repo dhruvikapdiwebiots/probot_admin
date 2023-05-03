@@ -27,7 +27,7 @@ class DefaultTextField extends StatelessWidget {
       Row(
         children: [
           Expanded(
-            child: CommonTextBox(hinText: title.toString().tr,controller: controller,)
+            child: CommonTextBox(hinText: title.toString().tr,controller: controller,validator: validator,)
           ),
           const HSpace( 32.0),
           addButtonWidget!

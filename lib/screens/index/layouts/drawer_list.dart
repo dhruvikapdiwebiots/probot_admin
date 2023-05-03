@@ -35,7 +35,7 @@ class DrawerList extends StatelessWidget {
                       child: Responsive.isDesktop(context) && value == false
                           ? SvgPicture.asset(e.value["icon"]!)
                           : Row(children: [
-                              SvgPicture.asset(e.value["icon"]!),
+                              SvgPicture.asset(appCtrl.isTheme ? e.value["darkIcon"]! : e.value["icon"]!),
                               const HSpace(Sizes.s20),
                               Responsive.isDesktop(context) && value == false
                                   ? Container()
@@ -57,6 +57,10 @@ class DrawerList extends StatelessWidget {
                     indexCtrl.pageName = e.value["title"]!;
                     if (!Responsive.isDesktop(context)) {
                       Get.back();
+                    }
+                    if(e.value["title"] == "categorySuggestion"){
+                      final suggestionCtrl = Get.isRegistered<CategorySuggestionController>() ? Get.find<CategorySuggestionController>() : Get.put(CategorySuggestionController());
+                      suggestionCtrl.onReady();
                     }
                     if (e.value["title"] == "logout") {
                       FirebaseAuth.instance.signOut();

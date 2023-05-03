@@ -2,6 +2,7 @@ import 'package:probot_admin/config.dart';
 import 'package:probot_admin/screens/abouts_us/abouts_us.dart';
 import 'package:probot_admin/screens/category/category.dart';
 import 'package:probot_admin/screens/category_suggestion/category_suggestion.dart';
+import 'package:probot_admin/screens/category_suggestion_list/category_suggestion_list.dart';
 import 'package:probot_admin/screens/characters/characters.dart';
 import 'package:probot_admin/screens/onboard_screen/onboard_screen.dart';
 import 'package:probot_admin/screens/top_up_users/top_up_users.dart';
@@ -31,6 +32,7 @@ class IndexController extends GetxController {
     CharacterLayout(),
     Category(),
     CategorySuggestion(),
+    CategorySuggestionList(),
     OnboardScreen(),
     GeneralSetting(),
     AboutsUs(),

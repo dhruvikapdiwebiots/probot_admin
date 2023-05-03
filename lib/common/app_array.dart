@@ -20,18 +20,19 @@ class AppArray{
 
   //Drawer list
   var drawerList = [
-    {'icon': svgAssets.dashboard, 'title': "dashboard"},
-    {'icon': svgAssets.people, 'title': "users"},
-    {'icon': svgAssets.userSubscribe, 'title': "subscribeUser"},
-    {'icon': svgAssets.userSubscribe, 'title': "topUpUsers"},
-    {'icon': svgAssets.crown, 'title': "subscription"},
-    {'icon': svgAssets.android, 'title': "character"},
-    {'icon': svgAssets.category, 'title': "category"},
-    {'icon': svgAssets.category, 'title': "categorySuggestion"},
-    {'icon': svgAssets.onBoard, 'title': "onBoardScreen"},
-    {'icon': svgAssets.setting, 'title': "generalSetting"},
-    {'icon': svgAssets.aboutUs, 'title': "aboutsUs"},
-    {'icon': svgAssets.logout, 'title': "logout"},
+    {'icon': svgAssets.dashboard, 'title': "dashboard","darkIcon":svgAssets.dashboardDark},
+    {'icon': svgAssets.people, 'title': "users","darkIcon":svgAssets.peopleDark},
+    {'icon': svgAssets.userSubscribe, 'title': "subscribeUser","darkIcon":svgAssets.userSubscribeDark},
+    {'icon': svgAssets.userSubscribe, 'title': "topUpUsers","darkIcon":svgAssets.userSubscribeDark},
+    {'icon': svgAssets.crown, 'title': "subscription","darkIcon":svgAssets.crownDark},
+    {'icon': svgAssets.android, 'title': "character","darkIcon":svgAssets.androidDark},
+    {'icon': svgAssets.category, 'title': "category","darkIcon":svgAssets.categoryDark},
+    {'icon': svgAssets.category, 'title': "categorySuggestion","darkIcon":svgAssets.categoryDark},
+    {'icon': svgAssets.suggestion, 'title': "suggestionList","darkIcon":svgAssets.suggestionDark},
+    {'icon': svgAssets.onBoard, 'title': "onBoardScreen","darkIcon":svgAssets.onBoardDark},
+    {'icon': svgAssets.setting, 'title': "generalSetting","darkIcon":svgAssets.settingDark},
+    {'icon': svgAssets.aboutUs, 'title': "aboutsUs","darkIcon":svgAssets.aboutUsDark},
+    {'icon': svgAssets.logout, 'title': "logout","darkIcon":svgAssets.logout},
   ];
 
 

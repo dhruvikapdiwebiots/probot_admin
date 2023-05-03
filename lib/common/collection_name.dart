@@ -7,5 +7,6 @@ class CollectionName{
   String onBoardScreen = "onBoardScreen";
   String config = "config";
   String categoryAccess = "categoryAccess";
+  String categorySuggestion = "categorySuggestion";
 
 }
