@@ -50,7 +50,7 @@ dependencies:
   intl: ^0.17.0
   http: ^0.13.5
   share_plus: ^6.3.0
-  device_info_plus: ^8.1.0
+  device_info_plus: ^8.2.2
   permission_handler: ^10.2.0
   dio:
   image_gallery_saver: ^1.7.1
@@ -85,6 +85,7 @@ dependencies:
   new_version: ^0.3.1
   advanced_datatable: ^0.0.8
   mime: ^1.0.4
+  universal_html: ^2.2.1
   html: ^0.15.2
 
 

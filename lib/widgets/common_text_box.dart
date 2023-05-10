@@ -66,7 +66,7 @@ class CommonTextBox extends StatelessWidget {
           onTap: onTap,
           readOnly: readOnly,
 
-          style: AppCss.outfitLight16.textColor(appCtrl.appTheme.blackColor1).letterSpace(.2) ,
+          style: AppCss.outfitLight14.textColor(appCtrl.appTheme.blackColor1).letterSpace(.2) ,
           maxLength: maxLength,
           decoration: InputDecoration(
               filled: true,
@@ -76,7 +76,7 @@ class CommonTextBox extends StatelessWidget {
 
               counterText: "",
               hintStyle:
-              AppCss.outfitLight16.textColor(appCtrl.appTheme.txt).letterSpace(.2),
+              AppCss.outfitLight14.textColor(appCtrl.appTheme.txt).letterSpace(.2),
               isDense: true,
               contentPadding: const EdgeInsets.symmetric(horizontal: Insets.i15,vertical: Insets.i20),
               border: border ?? inputBorder,

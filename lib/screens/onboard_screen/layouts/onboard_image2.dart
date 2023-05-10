@@ -1,7 +1,4 @@
 import 'dart:developer';
-
-import 'package:image_picker/image_picker.dart';
-
 import '../../../config.dart';
 
 class OnboardImage2 extends StatelessWidget {
@@ -56,7 +53,7 @@ class OnboardImage2 extends StatelessWidget {
                                 source: ImageSource.gallery,
                                 context: context,
                                 title: "image2"))
-      ]).height(onboardCtrl.isOnboardUploadFile2 ? Sizes.s40 :  image!.isNotEmpty ?Sizes.s150 :Sizes.s50);
+      ]).height(onboardCtrl.isOnboardUploadFile2 ? Sizes.s150  :  image!.isNotEmpty ?Sizes.s150 :Sizes.s50);
     });
   }
 }

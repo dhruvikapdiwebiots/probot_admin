@@ -1,4 +1,4 @@
-import 'package:probot_admin/screens/characters/layouts/image_layout.dart';
+
 import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image1.dart';
 import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image2.dart';
 import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image3.dart';

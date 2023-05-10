@@ -1,5 +1,4 @@
 
-import 'package:intl/intl.dart';
 
 import '../../../config.dart';
 
@@ -33,7 +32,7 @@ class TopUpUserMobile extends StatelessWidget {
                         Row(children: [
                           CommonWidgetClass().commonValueText("${fonts.price.tr} - "),
                           CommonWidgetClass().commonValueText(
-                              e.value.data()["price"].toString() ?? "Not Defined")
+                              e.value.data()["price"].toString())
                         ])
                       ]),
                   Column(

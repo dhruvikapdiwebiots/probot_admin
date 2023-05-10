@@ -40,14 +40,14 @@ imagePickerOption(
                         color: appCtrl.isTheme
                             ? appCtrl.appTheme.white
                             : appCtrl.appTheme.primary,
-                        text: "camera",
+                        text: fonts.camera.tr,
                         onTap: cameraTap),
                     IconCreation(
                         icons: Icons.image,
                         color: appCtrl.isTheme
                             ? appCtrl.appTheme.white
                             : appCtrl.appTheme.primary,
-                        text: "gallery",
+                        text: fonts.gallery.tr,
                         onTap: galleryTap),
                   ])
             ]));
@@ -55,7 +55,7 @@ imagePickerOption(
 }
 
 //alert
-showAlert({title, context}) async {
+showAlert({title, context,isError = false}) async {
   showFlash(
       context: context,
       duration: const Duration(seconds: 2),
@@ -66,7 +66,7 @@ showAlert({title, context}) async {
 
             margin: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width / 1.2, top: Insets.i50),
-            backgroundColor: appCtrl.appTheme.white,
+            backgroundColor: isError ?appCtrl.appTheme.redColor : appCtrl.appTheme.green,
             brightness: Brightness.light,
             boxShadows: const [BoxShadow(blurRadius: .2)],
             barrierBlur: 0.0,
@@ -81,20 +81,20 @@ showAlert({title, context}) async {
                 content: Text(title.toString().tr,
                     textAlign: TextAlign.center,
                     style: AppCss.outfitMedium14
-                        .textColor(appCtrl.appTheme.blackColor)),
+                        .textColor(isError ?appCtrl.appTheme.white :appCtrl.appTheme.blackColor)),
                 showProgressIndicator: false, ));
       });
 }
 
 //test user not allow dialog
-accessDenied(String content,{GestureTapCallback? onTap}) {
+accessDenied(String content,{GestureTapCallback? onTap,isModification = true}) {
   Get.dialog(
     AlertDialog(
-      title: const Text("Alert!"),
+      title: Text(fonts.alert.tr),
       content: Text(content.tr),
       actions: <Widget>[
         CommonButton(
-          title: "Close",
+          title: fonts.cancel.tr,
           width: Sizes.s80,
           style: AppCss.outfitMedium16.textColor(appCtrl.appTheme.white),
           onTap: () => Get.back(),

@@ -31,9 +31,11 @@ class TopUpUserList extends StatelessWidget {
                       .snapshots(),
               builder: (context, snapShot) {
                 if (snapShot.hasData) {
-                  userSettingCtrl.lastVisible = snapShot.data.docs.length - 1;
-                  userSettingCtrl.lastIndexId =
-                      snapShot.data.docs[snapShot.data.docs.length - 1].id;
+                  if(snapShot.data.docs.length > 0) {
+                    userSettingCtrl.lastVisible = snapShot.data.docs.length - 1;
+                    userSettingCtrl.lastIndexId =
+                        snapShot.data.docs[snapShot.data.docs.length - 1].id;
+                  }
                   return Responsive.isDesktop(context)
                       ? TopUpUserListDesktop(snapShot: snapShot)
                       : TopUpUserMobile(snapShot: snapShot);

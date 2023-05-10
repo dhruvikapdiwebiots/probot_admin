@@ -1,4 +1,5 @@
-import 'dart:developer';
+import 'dart:developer' as log;
+import 'dart:math';
 
 import 'package:probot_admin/config.dart';
 import 'package:probot_admin/screens/category_suggestion/layouts/add_text_form_field.dart';
@@ -7,10 +8,88 @@ class CategorySuggestionController extends GetxController {
   List<String> suggestionList = [];
   final formKey = GlobalKey<FormState>();
   TextEditingController suggestionController = TextEditingController();
+  TextEditingController txtSearch = TextEditingController();
   TextEditingController? suggestionDynamicController;
   String docId = "";
-  bool isLoading = false;
+  bool isLoading = false, isSearch = false;
   TextEditingController txtTitle = TextEditingController();
+
+  final List<int> perPages = [10, 20, 50, 100];
+  int total = 100;
+  int? currentPerPage = 10;
+  List<bool>? expanded;
+  String? searchKey = "title";
+  XFile? imageFile;
+  int currentPage = 1;
+  final List<Map<String, dynamic>> sourceOriginal = [];
+  List<Map<String, dynamic>> sourceFiltered = [];
+  List<Map<String, dynamic>> source = [];
+  int lastVisible = 0;
+
+  // ignore: unused_field
+  final String selectableKey = "id";
+  String lastIndexId = "";
+
+  String? sortColumn;
+
+  bool sortAscending = true;
+  final bool showSelect = true;
+
+  var random = Random();
+
+  //reset data
+  resetData({start = 0}) async {
+    isLoading = true;
+    update();
+    var expandedLen =
+        total - start < currentPerPage! ? total - start : currentPerPage;
+    Future.delayed(const Duration(seconds: 0)).then((value) {
+      expanded = List.generate(expandedLen as int, (index) => false);
+      source.clear();
+      source = sourceFiltered.getRange(start, start + expandedLen).toList();
+      isLoading = false;
+      update();
+    });
+  }
+
+  Stream getChatsFromRefs() {
+    Stream<QuerySnapshot<Map<String, dynamic>>> event = FirebaseFirestore
+        .instance
+        .collection(collectionName.categorySuggestion)
+        .where("title", isGreaterThanOrEqualTo: txtSearch.text)
+        .limit(currentPerPage!)
+        .snapshots();
+    log.log("event : $event");
+    return event;
+  }
+
+  //filter data
+  filterData(value) {
+    isLoading = true;
+    update();
+    getChatsFromRefs();
+    try {
+      if (value == "" || value == null) {
+        sourceFiltered = sourceOriginal;
+      } else {
+        sourceFiltered = sourceOriginal
+            .where((data) => data[searchKey!]
+                .toString()
+                .toLowerCase()
+                .contains(value.toString().toLowerCase()))
+            .toList();
+      }
+
+      total = sourceFiltered.length;
+      var rangeTop = total < currentPerPage! ? total : currentPerPage!;
+      expanded = List.generate(rangeTop, (index) => false);
+      source = sourceFiltered.getRange(0, rangeTop).toList();
+    } catch (e) {
+      log.log("filter error : $e");
+    }
+    isLoading = false;
+    update();
+  }
 
   @override
   void dispose() {
@@ -45,11 +124,9 @@ class CategorySuggestionController extends GetxController {
   Widget addRemoveButton(bool add, int index, String text) {
     return InkWell(
       onTap: () {
-        log("INDE : $index");
-        log("add : $add");
         if (add) {
           // add new text-fields at the top of all friends textfields
-          suggestionList.insert(0, text);
+          suggestionList.insert(0, "");
         } else {
           suggestionList.removeAt(index);
         }
@@ -73,42 +150,59 @@ class CategorySuggestionController extends GetxController {
 
   //add suggestion
   addSuggestion() async {
-    isLoading = true;
-    update();
-    await FirebaseFirestore.instance
-        .collection(collectionName.categorySuggestion)
-        .add({
-      "title": txtTitle.text,
-      "suggestionList": suggestionList,
-      "isActive": true
-    }).then((value) {
-      suggestionList = [];
-      txtTitle.text = "";
-
-      suggestionList.insert(0, "");
-      isLoading = false;
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      isLoading = true;
       update();
-    });
+      await FirebaseFirestore.instance
+          .collection(collectionName.categorySuggestion)
+          .add({
+        "title": txtTitle.text,
+        "suggestionList": suggestionList,
+        "isActive": true
+      }).then((value) {
+        suggestionList = [];
+        txtTitle.text = "";
+
+        suggestionList.insert(0, "");
+        isLoading = false;
+        update();
+      });
+    }
   }
 
   //update suggestion
   updateSuggestion() async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.categorySuggestion)
-        .doc(docId)
-        .update({
-      "title": txtTitle.text,
-      "suggestionList": suggestionList,
-      "isActive": true
-    });
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection(collectionName.categorySuggestion)
+          .doc(docId)
+          .update({
+        "title": txtTitle.text,
+        "suggestionList": suggestionList,
+        "isActive": true
+      });
+    }
   }
 
   //active status change
   isActiveChange(id, value) async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.categorySuggestion)
-        .doc(id)
-        .update({"isActive": value});
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection(collectionName.categorySuggestion)
+          .doc(id)
+          .update({"isActive": value});
+    }
   }
 
   getData(id) async {

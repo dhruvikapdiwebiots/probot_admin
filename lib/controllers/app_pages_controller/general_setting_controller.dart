@@ -1,10 +1,6 @@
-import 'dart:developer';
-import 'dart:math' as math;
-import 'package:flutter/foundation.dart';
+
 import 'package:probot_admin/config.dart';
-import 'package:probot_admin/models/firebase_config.dart';
-import 'package:probot_admin/screens/characters/layouts/add_character.dart';
-import 'dart:io' as io;
+
 
 class GeneralSettingController extends GetxController {
   dynamic usageCtrl;
@@ -63,7 +59,11 @@ class GeneralSettingController extends GetxController {
     update();
   }
 
-  updateData() async {
+  updateData() async { bool isLoginTest =
+  appCtrl.storage.read(session.isLoginTest);
+  if (isLoginTest) {
+    accessDenied(fonts.modification.tr);
+  } else {
     await FirebaseFirestore.instance.collection("config").doc(id).update({
       "bannerAddId": txtBannerAddId.text,
       "bannerIOSId": txtBannerIOSId.text,
@@ -81,11 +81,18 @@ class GeneralSettingController extends GetxController {
       "rewardIOSId": txtRewardIOSId.text,
     });
   }
+  }
 
   commonSwitcherValueChange(title,value)async{
-    await FirebaseFirestore.instance.collection("config").doc(id).update({
-      title:value
-    });
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance.collection("config").doc(id).update({
+        title: value
+      });
+    }
   }
 
   @override

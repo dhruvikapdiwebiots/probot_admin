@@ -35,7 +35,7 @@ class AboutsUs extends StatelessWidget {
                                     Expanded(
                                       child: Column(
                                           crossAxisAlignment: CrossAxisAlignment
-                                              .end,
+                                              .start,
                                           mainAxisAlignment: MainAxisAlignment
                                               .start,
                                           children: [
@@ -62,6 +62,7 @@ class AboutsUs extends StatelessWidget {
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
+                                              mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text("Logo",
                                                     style: AppCss.outfitMedium18
@@ -92,7 +93,7 @@ class AboutsUs extends StatelessWidget {
                                     Expanded(
                                       child: Column(
                                           crossAxisAlignment: CrossAxisAlignment
-                                              .end,
+                                              .start,
                                           mainAxisAlignment: MainAxisAlignment
                                               .start,
                                           children: [

@@ -1,6 +1,4 @@
 
-import 'package:intl/intl.dart';
-
 import '../../../config.dart';
 
 class SubscriptionMobileLayout extends StatelessWidget {
@@ -54,12 +52,9 @@ class SubscriptionMobileLayout extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.delete, color: appCtrl.appTheme.primary)
+                        Icon(Icons.edit, color: appCtrl.appTheme.primary)
                             .inkWell(
-                            onTap: () => accessDenied(
-                                fonts.deleteSubscriptionConfirmation,
-                                onTap: () =>
-                                    userCtrl.onDeleteData(e.value.id))),
+                            onTap: () => userCtrl.addSubscriptionDialog(data: e.value.data())),
                         CommonSwitcher(
                             isActive: e.value.data()["isActive"] ?? true,
                             onToggle: (val) =>

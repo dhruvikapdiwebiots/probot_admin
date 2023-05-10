@@ -1,4 +1,4 @@
-import '../../../config.dart';
+import '../config.dart';
 
 class MobileSwitchCommon extends StatelessWidget {
   final String? title;

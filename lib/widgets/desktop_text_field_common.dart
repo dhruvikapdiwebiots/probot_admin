@@ -1,4 +1,4 @@
-import '../../../config.dart';
+import '../config.dart';
 
 class DesktopTextFieldCommon extends StatelessWidget {
   final String? title;

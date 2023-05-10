@@ -52,17 +52,29 @@ class SubscriptionListController extends GetxController {
   }
 
   onDeleteData(id) async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.plans)
-        .doc(id)
-        .delete();
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection(collectionName.plans)
+          .doc(id)
+          .delete();
+    }
   }
 
   onActiveStatusChange(id, value) async {
-    await FirebaseFirestore.instance
-        .collection("plans")
-        .doc()
-        .update({"isActive": value});
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection("plans")
+          .doc()
+          .update({"isActive": value});
+    }
   }
 
   @override

@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:probot_admin/config.dart';
-import 'package:probot_admin/screens/characters/layouts/add_character.dart';
+
 import 'dart:io' as io;
 
 class AboutUsController extends GetxController {
@@ -57,20 +57,26 @@ class AboutUsController extends GetxController {
   }
 
   updateData() {
-    FirebaseFirestore.instance
-        .collection(collectionName.config)
-        .get()
-        .then((value) async {
-      if (value.docs.isNotEmpty) {
-        await FirebaseFirestore.instance.collection("config").doc(id).update({
-          "privacyPolicyLink": txtPrivacyPolicyLink.text,
-          "rateAppAndroidId": txtRateAppAndroidId.text,
-          "rateAppIOSId": txtRateAppIOSId.text,
-          "refundLink": txtRefundLink.text,
-        });
-        update();
-      }
-    });
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      FirebaseFirestore.instance
+          .collection(collectionName.config)
+          .get()
+          .then((value) async {
+        if (value.docs.isNotEmpty) {
+          await FirebaseFirestore.instance.collection("config").doc(id).update({
+            "privacyPolicyLink": txtPrivacyPolicyLink.text,
+            "rateAppAndroidId": txtRateAppAndroidId.text,
+            "rateAppIOSId": txtRateAppIOSId.text,
+            "refundLink": txtRefundLink.text,
+          });
+          update();
+        }
+      });
+    }
   }
 
   //on click Image
@@ -206,11 +212,6 @@ class AboutUsController extends GetxController {
           homeImageName.contains("jpeg")) {
         var image = dropImage;
         homeUploadWebImage = image;
-
-        Image image1 = Image.memory(homeUploadWebImage);
-
-        ImageInfo info = await getImageInfo(image1);
-
         homeWebImage = homeUploadWebImage;
         homePickImage = io.File("a");
         isHomeUploadFile = true;
@@ -237,7 +238,7 @@ class AboutUsController extends GetxController {
 
         Image image1 = Image.memory(homeUploadWebImage);
         log("image1 : $image1");
-        ImageInfo info = await getImageInfo(image1);
+
 
         homeWebImage = homeUploadWebImage;
         homePickImage = io.File(homeFile!.path);
@@ -270,9 +271,6 @@ class AboutUsController extends GetxController {
         var image = dropImage;
         drawerUploadWebImage = image;
 
-        Image image1 = Image.memory(drawerUploadWebImage);
-
-
         drawerWebImage = drawerUploadWebImage;
         drawerPickImage = io.File("a");
         isDrawerUploadFile = true;
@@ -300,7 +298,7 @@ class AboutUsController extends GetxController {
 
         Image image1 = Image.memory(drawerUploadWebImage);
         log("image1 : $image1");
-        ImageInfo info = await getImageInfo(image1);
+
 
         drawerWebImage = drawerUploadWebImage;
         drawerPickImage = io.File(drawerFile!.path);
@@ -321,37 +319,46 @@ class AboutUsController extends GetxController {
 
 // UPLOAD SELECTED IMAGE TO FIREBASE
   Future uploadLogoFile(title) async {
-    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
-      isLoading = true;
-      if (pickImage != null ||
-          homePickImage != null ||
-          drawerPickImage != null) {
-        update();
-        String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-        Reference reference = FirebaseStorage.instance.ref().child(fileName);
+      bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+      if (isLoginTest) {
+        accessDenied(fonts.modification.tr);
+      } else {
+        isLoading = true;
+        if (pickImage != null ||
+            homePickImage != null ||
+            drawerPickImage != null) {
+          update();
+          String fileName = DateTime
+              .now()
+              .millisecondsSinceEpoch
+              .toString();
+          Reference reference = FirebaseStorage.instance.ref().child(fileName);
 
-        UploadTask? uploadTask;
-        uploadTask = reference.putData(title == "splashLogo"
-            ? webImage
-            : title == "homeLogo"
-                ? homeWebImage
-                : drawerWebImage);
+          UploadTask? uploadTask;
+          uploadTask = reference.putData(title == "splashLogo"
+              ? webImage
+              : title == "homeLogo"
+              ? homeWebImage
+              : drawerWebImage);
 
-        uploadTask.then((res) async {
-          log("res : $res");
-          res.ref.getDownloadURL().then((downloadUrl) async {
-            imageUrl = downloadUrl;
-            log("imageUrl : $imageUrl");
-            update();
-            await Future.delayed(Durations.s3);
-            uploadImage(title, imageUrl);
-          }, onError: (err) {
-            update();
+          uploadTask.then((res) async {
+            log("res : $res");
+            res.ref.getDownloadURL().then((downloadUrl) async {
+              imageUrl = downloadUrl;
+              log("imageUrl : $imageUrl");
+              update();
+              await Future.delayed(Durations.s3);
+              uploadImage(title, imageUrl);
+            }, onError: (err) {
+              update();
+            });
           });
-        });
+        }
       }
     }
   }

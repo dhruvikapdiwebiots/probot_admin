@@ -5,9 +5,10 @@ import 'package:probot_admin/screens/category_suggestion/category_suggestion.dar
 import 'package:probot_admin/screens/category_suggestion_list/category_suggestion_list.dart';
 import 'package:probot_admin/screens/characters/characters.dart';
 import 'package:probot_admin/screens/onboard_screen/onboard_screen.dart';
+import 'package:probot_admin/screens/subscription_list/subscription_list.dart';
 import 'package:probot_admin/screens/top_up_users/top_up_users.dart';
 
-import 'package:probot_admin/screens/user_subscribe_list/user__subscribe_list.dart';
+import 'package:probot_admin/screens/user_subscribe_list/user_subscribe_list.dart';
 
 import '../../screens/general_setting/general_setting.dart';
 
@@ -36,7 +37,7 @@ class IndexController extends GetxController {
     OnboardScreen(),
     GeneralSetting(),
     AboutsUs(),
-    Text("LOGOUT")
+ const   Text("LOGOUT")
   ];
 
   @override

@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 import '../../../../config.dart';
 
 class LoginLayout extends StatelessWidget {
@@ -8,12 +8,12 @@ class LoginLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoginCommonClass().loginBody(
         child: Container(
-            constraints: const BoxConstraints(maxWidth: 550, maxHeight: 700),
+            constraints: const BoxConstraints(maxWidth: 550, maxHeight: 600),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppRadius.r10),
                 color: appCtrl.appTheme.whiteColor),
             child: const Padding(
-                padding: EdgeInsets.all(Insets.i50),
+                padding: EdgeInsets.symmetric(horizontal:Insets.i50,vertical: Insets.i20),
                 child: SingleChildScrollView(child: LoginBodyLayout()))));
   }
 }

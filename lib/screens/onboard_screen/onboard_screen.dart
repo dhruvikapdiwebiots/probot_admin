@@ -1,9 +1,3 @@
-import 'dart:developer';
-
-import 'package:probot_admin/screens/onboard_screen/layouts/english_text_box.dart';
-import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image1.dart';
-import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image2.dart';
-import 'package:probot_admin/screens/onboard_screen/layouts/onboard_image3.dart';
 import '../../config.dart';
 
 class OnboardScreen extends StatelessWidget {
@@ -15,100 +9,18 @@ class OnboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OnboardController>(builder: (_) {
       return Form(
-        key: onboardCtrl.formKey,
-        child: Stack(
-          children: [
+          key: onboardCtrl.formKey,
+          child: Stack(children: [
             Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${fonts.image.tr} 1",
-                                        style: AppCss.outfitMedium18
-                                            .textColor(appCtrl.appTheme.dark)
-                                            .textHeight(1.5)),
-                                    const VSpace(Sizes.s15),
-                                    OnboardImage1(
-                                      image: onboardCtrl.imageUrl,
-                                    ),
-                                  ],
-                                ),
-
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${fonts.image.tr} 2",
-                                        style: AppCss.outfitMedium18
-                                            .textColor(appCtrl.appTheme.dark)
-                                            .textHeight(1.5)),
-
-                                    OnboardImage2(
-                                      image: onboardCtrl.imageUrl2,
-                                    ),
-                                  ],
-                                ),
-
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${fonts.image.tr} 3",
-                                        style: AppCss.outfitMedium18
-                                            .textColor(appCtrl.appTheme.dark)
-                                            .textHeight(1.5)),
-
-                                    OnboardImage3(
-                                      image: onboardCtrl.imageUrl3,
-                                    ),
-                                  ],
-                                )
-                              ]).marginOnly(top: Insets.i15),
-                        ),
-                        const HSpace(Sizes.s30),
-
-                      ],
-                    ).paddingAll(Insets.i30),
-                  ).boxExtension1().marginOnly(top: Insets.i15),
+                  Responsive.isDesktop(context)
+                      ? const OnboardDesktop()
+                      : const OnboardMobileLayout(),
                   const VSpace(Sizes.s20),
-                  Row(
-                    children: [
-                      ...onboardCtrl.selectLanguageLists
-                          .asMap()
-                          .entries
-                          .map((e) {
-                        return Text(
-                          e.value.title.toString().tr,
-                          style: AppCss.outfitRegular14.textColor(
-                              onboardCtrl.selectIndex == e.key
-                                  ? appCtrl.appTheme.white
-                                  : appCtrl.appTheme.blackColor1),
-                        )
-                            .paddingSymmetric(
-                                horizontal: Insets.i15, vertical: Insets.i10)
-                            .decorated(
-                                color: onboardCtrl.selectIndex == e.key
-                                    ? appCtrl.appTheme.primary
-                                    : appCtrl.appTheme.white,
-                                borderRadius:
-                                    BorderRadius.circular(AppRadius.r5)).marginOnly(right: Insets.i10)
-                            .inkWell(onTap: () {
-                          onboardCtrl.selectIndex = e.key;
-                          onboardCtrl.update();
-                        });
-                      }).toList()
-                    ],
-                  ),
+                  const OnboardLanguage(),
                   const VSpace(Sizes.s20),
                   EnglishTextBox(
                       txtTitle: onboardCtrl.selectIndex == 0
@@ -135,22 +47,22 @@ class OnboardScreen extends StatelessWidget {
                                           : onboardCtrl.txtJpDesc),
                   const VSpace(Sizes.s30),
                   CommonButton(
-                    icon: onboardCtrl.isLoading ?const CircularProgressIndicator() : Container(),
-                    title:onboardCtrl.id != "" ?fonts.update.tr : fonts.submit.tr,
-                    onTap: () => onboardCtrl.id != "" ?onboardCtrl.updateData() :onboardCtrl.uploadLogoFile(),
-                    style: AppCss.outfitRegular14
-                        .textColor(appCtrl.appTheme.white),
-                  )
+                      icon: onboardCtrl.isLoading
+                          ? const CircularProgressIndicator()
+                          : Container(),
+                      title: onboardCtrl.id != ""
+                          ? fonts.update.tr
+                          : fonts.submit.tr,
+                      onTap: () => onboardCtrl.id != ""
+                          ? onboardCtrl.updateData()
+                          : onboardCtrl.uploadLogoFile(),
+                      style: AppCss.outfitRegular14
+                          .textColor(appCtrl.appTheme.white))
                 ]).paddingAll(Insets.i25).boxExtension(),
-            GetBuilder<AppController>(builder: (context) {
-              return CustomSnackBar(
-                isAlert: appCtrl.isAlert,
-                text: "Please add all 3 images",
-              );
-            })
-          ],
-        ),
-      );
+            CustomSnackBar(
+                isAlert: onboardCtrl.isTextAlert,
+                text: "Please Fill all the Text box")
+          ]));
     });
   }
 }

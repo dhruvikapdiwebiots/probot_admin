@@ -1,4 +1,3 @@
-
 import '../../../config.dart';
 
 class UserListLayout extends StatelessWidget {
@@ -17,55 +16,54 @@ class UserListLayout extends StatelessWidget {
           3: FlexColumnWidth(),
           4: FlexColumnWidth(),
           5: FlexColumnWidth(),
-          6: FlexColumnWidth(),
+          6: FlexColumnWidth()
         }, children: [
-          TableRow(
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(53, 193, 255, 0.07),
-              ),
-              children: [
-                CommonWidgetClass().commonTitleText(fonts.id),
-                CommonWidgetClass().commonTitleText(fonts.image),
-                CommonWidgetClass().commonTitleText(fonts.memberName),
-                CommonWidgetClass().commonTitleText(fonts.email),
-                CommonWidgetClass().commonTitleText(fonts.phone),
-                CommonWidgetClass().commonTitleText(fonts.isActive),
-                CommonWidgetClass().commonTitleText(fonts.actions)
-              ]),
+          UserListWidgetClass().tableRow(),
           ...snapShot!.data!.docs.asMap().entries.map((e) {
             return TableRow(children: [
               CommonWidgetClass().commonValueText(e.value.id).marginSymmetric(
-                  vertical: Insets.i15, horizontal: Insets.i10),
+                  vertical: Insets.i10, horizontal: Insets.i10),
               CommonWidgetClass()
                   .commonValueText(e.value.data()["image"], isImage: true)
-                  .marginSymmetric(vertical: Insets.i15),
+                  .marginSymmetric(vertical: Insets.i10),
               CommonWidgetClass()
                   .commonValueText(e.value.data()["name"] ?? "-")
-                  .marginSymmetric(vertical: Insets.i15),
+                  .marginSymmetric(vertical: Insets.i10),
               CommonWidgetClass()
                   .commonValueText(e.value.data()["email"] ?? "-")
-                  .marginSymmetric(vertical: Insets.i15),
+                  .marginSymmetric(vertical: Insets.i10),
               CommonWidgetClass()
                   .commonValueText(e.value.data()["phone"] ?? "-")
-                  .marginSymmetric(vertical: Insets.i15),
+                  .marginSymmetric(vertical: Insets.i10),
               CommonSwitcher(
                   onToggle: (val) async {
-                    await FirebaseFirestore.instance
-                        .collection(collectionName.users)
-                        .doc(e.value.id)
-                        .update({"isActive": val});
+                    bool isLoginTest =
+                        appCtrl.storage.read(session.isLoginTest);
+                    if (isLoginTest) {
+                      accessDenied(fonts.modification.tr);
+                    } else {
+                      await FirebaseFirestore.instance
+                          .collection(collectionName.users)
+                          .doc(e.value.id)
+                          .update({"isActive": val});
+                    }
                   },
                   isActive: e.value.data()["isActive"] ?? true),
-              SubscriptionWidgetClass().actionLayout(
-                  onTap: () => accessDenied(
-                          fonts.deleteConfirmation.tr,
-                          onTap: () => appCtrl.deleteAccount(e.value.id,e.value.data()["email"])))
+              CommonWidgetClass().actionLayout(onTap: () {
+                bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+                if (isLoginTest) {
+                  accessDenied(fonts.modification.tr);
+                } else {
+                  accessDenied(fonts.deleteConfirmation.tr,
+                      isModification: false,
+                      onTap: () => appCtrl.deleteAccount(
+                          e.value.id, e.value.data()["email"]));
+                }
+              })
             ]);
           }).toList()
         ]).decorated(
             border: Border.all(color: appCtrl.appTheme.primary),
             borderRadius: BorderRadius.circular(AppRadius.r6)));
   }
-
-
 }

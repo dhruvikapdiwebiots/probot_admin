@@ -1,6 +1,6 @@
 import 'dart:developer';
 import '../../../config.dart';
-import 'dart:html' as html;
+import 'package:universal_html/html.dart' as html;
 
 class DrawerList extends StatelessWidget {
   final bool? value;

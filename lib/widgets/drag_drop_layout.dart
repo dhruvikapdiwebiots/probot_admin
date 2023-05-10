@@ -13,6 +13,7 @@ class DragDropLayout extends StatelessWidget {
             operation: DragOperation.copy,
             cursor: CursorType.grab,
             onCreated: onCreated,
+            
             onLoaded: () => log('Zone 1 loaded'),
             onError: (ev) => log('Zone 1 error: $ev'),
             onHover: () {
@@ -24,6 +25,6 @@ class DragDropLayout extends StatelessWidget {
             onDrop: onDrop,
             onDropMultiple: (ev) async {
               log('Zone 1 drop multiple: $ev');
-            }));
+            })).height(Sizes.s180).width(Sizes.s180);
   }
 }

@@ -1,5 +1,4 @@
-import 'package:intl/intl.dart';
-import 'package:probot_admin/widgets/common_widget_class.dart';
+
 
 import '../../../config.dart';
 
@@ -22,8 +21,8 @@ class TopUpUserListDesktop extends StatelessWidget {
         },
         children: [
           TableRow(
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(53, 193, 255, 0.07),
+              decoration: BoxDecoration(
+                color: appCtrl.appTheme.tableTitleColor,
               ),
               children: [
                 CommonWidgetClass().commonTitleText(fonts.memberName),
@@ -40,13 +39,9 @@ class TopUpUserListDesktop extends StatelessWidget {
               CommonWidgetClass()
                   .commonValueText(e.value.data()["email"] ?? "-")
                   .marginSymmetric(vertical: Insets.i15),
-              e.value.data()["expiryDate"] != null
-                  ? CommonWidgetClass()
-                      .commonValueText(e.value.data()["price"].toString())
-                      .marginSymmetric(vertical: Insets.i15)
-                  : CommonWidgetClass()
-                      .commonValueText("")
-                      .marginSymmetric(vertical: Insets.i15),
+              CommonWidgetClass()
+                  .commonValueText(e.value.data()["price"].toString())
+                  .marginSymmetric(vertical: Insets.i15),
               CommonWidgetClass()
                   .commonValueText(e.value.data()["paymentMethod"] ?? "-")
                   .marginSymmetric(vertical: Insets.i15),

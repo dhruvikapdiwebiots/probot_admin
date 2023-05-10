@@ -1,11 +1,11 @@
 final dynamic en = {
+  "appName": "Probot",
   "banners": "Banners",
   "logout": "Logout",
   "signIn": "Sign In",
   "forgotPassword": "Forgot Password",
   "doNotHaveAccount": "Don't have an account?  ",
   "signUp": "Sign Up",
-  "welcomeBack": "Welcome Back !!",
   "email": "Email",
   "enterYourEmail": "Enter Your Email",
   "password": "Password",
@@ -207,4 +207,17 @@ final dynamic en = {
   "addSuggestion": "Add Suggestion",
   "updateSuggestion": "Update Suggestion",
   "suggestionList": "Suggestion List",
+  "manageYour": "Manage your all user’s data & more",
+  "getBetterExperience": "Get better experience by using Probot web app",
+  "credentialsForLogin": "Credentials for Login :",
+  "welcomeBack": "Welcome Back ! You have been missed",
+  "fillTheBelowForm": "Fill the below form",
+
+  "alert": "Alert!",
+  "close": "Close",
+  "camera": "Camera",
+  "gallery": "Gallery",
+
+  "inValidPassword": "Invalid Password",
+  "invalidEmailPassword": "Invalid Email or Password",
 };

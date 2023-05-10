@@ -1,9 +1,5 @@
-import 'dart:developer';
-import 'dart:math' as math;
-import 'package:flutter/foundation.dart';
+
 import 'package:probot_admin/config.dart';
-import 'package:probot_admin/screens/characters/layouts/add_character.dart';
-import 'dart:io' as io;
 
 class CategoryAccessController extends GetxController {
   dynamic usageCtrl;
@@ -15,9 +11,17 @@ class CategoryAccessController extends GetxController {
 
 
   commonSwitcherValueChange(title,value)async{
-    await FirebaseFirestore.instance.collection(collectionName.categoryAccess).doc(id).update({
-      title:value
-    });
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance.collection(collectionName.categoryAccess)
+          .doc(id)
+          .update({
+        title: value
+      });
+    }
   }
 
   getId()async{

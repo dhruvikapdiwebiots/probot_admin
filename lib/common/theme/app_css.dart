@@ -60,6 +60,7 @@ class AppCss {
   static TextStyle get outfitMedium30 => outfit.medium.size(FontSizes.f30);
   static TextStyle get outfitMedium28 => outfit.medium.size(FontSizes.f28);
   static TextStyle get outfitMedium26 => outfit.medium.size(FontSizes.f26);
+  static TextStyle get outfitMedium24 => outfit.medium.size(FontSizes.f24);
   static TextStyle get outfitMedium22 => outfit.medium.size(FontSizes.f22);
   static TextStyle get outfitMedium20 => outfit.medium.size(FontSizes.f20);
   static TextStyle get outfitMedium18 => outfit.medium.size(FontSizes.f18);
@@ -78,5 +79,6 @@ class AppCss {
 
   static TextStyle get outfitLight18 => outfit.light.size(FontSizes.f18);
   static TextStyle get outfitLight16 => outfit.light.size(FontSizes.f16);
+  static TextStyle get outfitLight14 => outfit.light.size(FontSizes.f14);
 
 }

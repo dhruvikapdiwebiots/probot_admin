@@ -1,6 +1,11 @@
-import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_list_table.dart';
-import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_widget_class.dart';
-import 'package:probot_admin/screens/characters/layouts/character_mobile_layout.dart';
+import 'dart:developer';
+
+import 'package:pinput/pinput.dart';
+import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_custom_pagination.dart';
+import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_list_desktop.dart';
+import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_list_mobile.dart';
+import 'package:probot_admin/screens/category_suggestion_list/layouts/suggestion_search.dart';
+
 
 import '../../config.dart';
 
@@ -19,89 +24,33 @@ class CategorySuggestionList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
+            const SuggestionSearch().alignment(Alignment.centerRight),
+            const VSpace(Sizes.s20),
             StreamBuilder(
-                stream: FirebaseFirestore.instance
+                stream: categoryCtrl.txtSearch.length > 0
+                    ? categoryCtrl.getChatsFromRefs()
+                    : FirebaseFirestore.instance
                     .collection(collectionName.categorySuggestion)
                     .snapshots(),
                 builder: (context, snapShot) {
                   if (snapShot.hasData) {
-                    return Responsive.isDesktop(context)
-                        ? SuggestionListTable(children: [
-                            SuggestionWidgetClass().tableWidget(),
-                            ...snapShot.data!.docs.asMap().entries.map((e) {
-                              String suggestionName = "";
-                              List suggestionList =
-                                  e.value.data()["suggestionList"];
+                    log("LENTH : ${snapShot.data.docs.length}");
+                    if(snapShot.data.docs.length >0) {
+                      categoryCtrl.lastVisible = snapShot.data.docs.length - 1;
+                      categoryCtrl.lastIndexId =
+                          snapShot.data.docs[snapShot.data.docs.length - 1].id;
+                    }
 
-                              return TableRow(
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color:
-                                                  appCtrl.appTheme.primary))),
-                                  children: [
-                                    CommonWidgetClass()
-                                        .commonValueText(e.value.id)
-                                        .marginSymmetric(
-                                            vertical: Insets.i12,
-                                            horizontal: Insets.i10),
-                                    CommonWidgetClass()
-                                        .commonValueText(
-                                            e.value.data()["title"])
-                                        .marginSymmetric(vertical: Insets.i12),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ...suggestionList
-                                            .asMap()
-                                            .entries
-                                            .map((element) {
-                                          return Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(Icons.circle,
-                                                  size: Sizes.s5),
-                                              const HSpace(Sizes.s5),
-                                              Expanded(
-                                                  child: Text(
-                                                element.value,
-                                                overflow: TextOverflow.clip,
-                                                style: AppCss.outfitRegular14
-                                                    .textColor(appCtrl
-                                                        .appTheme.blackColor),
-                                              ))
-                                            ],
-                                          ).marginOnly(bottom: Insets.i10);
-                                        }).toList()
-                                      ],
-                                    ).marginSymmetric(vertical: Insets.i10),
-                                    CommonSwitcher(
-                                        isActive:
-                                            e.value.data()["isActive"] ?? true,
-                                        onToggle: (val) => categoryCtrl
-                                            .isActiveChange(e.value.id, val)),
-                                    SuggestionWidgetClass().actionLayout(
-                                        onTap: () {
-                                      final indexCtrl =
-                                          Get.isRegistered<IndexController>()
-                                              ? Get.find<IndexController>()
-                                              : Get.put(IndexController());
-                                      indexCtrl.selectedIndex = 7;
-                                      categoryCtrl.getData(e.value.id);
-                                      indexCtrl.update();
-                                    }).marginSymmetric(vertical: Insets.i12)
-                                  ]);
-                            }).toList()
-                          ])
-                        : CharacterMobileLayout(
+                    return Responsive.isDesktop(context)
+                        ? SuggestionListDesktop(snapShot: snapShot,)
+                        : SuggestionListMobile(
                             snapShot: snapShot,
                           );
                   } else {
                     return Container();
                   }
-                })
+                }),
+            const SuggestionCustomPagination()
           ]).paddingAll(Insets.i25).boxExtension();
     });
   }

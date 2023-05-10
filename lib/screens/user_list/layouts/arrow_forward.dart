@@ -10,7 +10,7 @@ class ArrowForward extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.arrow_forward_ios, size: 16,color: appCtrl.appTheme.gray),
       onPressed:onPressed,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
     );
   }
 }

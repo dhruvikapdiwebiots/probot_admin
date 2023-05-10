@@ -21,7 +21,7 @@ class LeadingRow extends StatelessWidget {
                       log("message");
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: Insets.i10),
+                      padding:const EdgeInsets.symmetric(vertical: Insets.i10),
                       color: appCtrl.appTheme.secondary,
                       child: Image.asset(
                         imageAssets.logo1,

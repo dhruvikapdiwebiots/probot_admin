@@ -41,7 +41,7 @@ class SubscriptionList extends StatelessWidget {
                                   onToggle: (val) => usageCtrl
                                       .onActiveStatusChange(e.value.id, val),
                                   isActive: e.value.data()["isActive"] ?? true),
-                              SubscriptionWidgetClass().actionLayout(
+                              CommonWidgetClass().actionLayout(isUser: false,
                                   onTap: () => usageCtrl.addSubscriptionDialog(data: e.value.data()))
                             ]);
                           }).toList()

@@ -245,17 +245,28 @@ class CharactersController extends GetxController {
   }
 
   isActiveChange(id, value) async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.characters)
-        .doc(id)
-        .update({"isActive": value});
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection(collectionName.characters)
+          .doc(id)
+          .update({"isActive": value});
+    }
   }
 
   deleteData(id) async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.characters)
-        .doc(id)
-        .delete();
+    bool isLoginTest =
+    appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection(collectionName.characters)
+          .doc(id)
+          .delete();
+    }
   }
 
   @override

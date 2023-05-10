@@ -33,11 +33,10 @@ class AppController extends GetxController {
   }
 
   //get storage data
-  getStorageData(){
-
+  getStorageData() {
     bool isAdmin = appCtrl.storage.read("isSignIn") ?? false;
     appCtrl.isLogged = isAdmin;
-     log("isLogin;  $isAdmin");
+    log("isLogin;  $isAdmin");
 
     bool isTheme = appCtrl.storage.read(session.isDarkMode) ?? false;
     log("isTheme : $isTheme");
@@ -45,7 +44,6 @@ class AppController extends GetxController {
     appCtrl.isTheme = isTheme;
     ThemeService().switchTheme(appCtrl.isTheme);
     appCtrl.update();
-
 
     appCtrl.languageVal = appCtrl.storage.read(session.languageCode) ?? "en";
     log("language : ${appCtrl.languageVal}");
@@ -60,19 +58,17 @@ class AppController extends GetxController {
       Get.updateLocale(locale);
       Get.forceAppUpdate();
     } else {
-
       var locale = const Locale("ko", 'KR');
       Get.updateLocale(locale);
       Get.forceAppUpdate();
     }
     update();
-
   }
 
-  deleteAccount(id,email) async {
+  deleteAccount(id, email) async {
     try {
       await FirebaseFirestore.instance
-          .collection(collectionName.users)
+          .collection("users")
           .doc(id)
           .collection("chats")
           .get()
@@ -88,24 +84,15 @@ class AppController extends GetxController {
           });
         }
       }).then((value) async {
-        FirebaseFirestore.instance
-            .collection(collectionName.userSubscribe).where("email",isEqualTo: email).limit(1).get().then((data) {
-              if(data.docs.isNotEmpty){
-                FirebaseFirestore.instance
-                    .collection(collectionName.userSubscribe).doc(data.docs[0].id).delete().then((value)async {
-                  await FirebaseFirestore.instance
-                      .collection("users")
-                      .doc(id)
-                      .delete();
-                });
-              }
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .delete()
+            .then((value) async {
+          await FirebaseAuth.instance.currentUser!.delete().then((value) =>
+              Fluttertoast.showToast(msg: fonts.deleteUserSuccessfully.tr));
         });
-
       });
-
-      await FirebaseAuth.instance.currentUser!.delete().then(
-              (value) => Fluttertoast.showToast(msg: fonts.deleteUserSuccessfully.tr));
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
         log('The user must reauthenticate before this operation can be executed.');
@@ -113,4 +100,3 @@ class AppController extends GetxController {
     }
   }
 }
-

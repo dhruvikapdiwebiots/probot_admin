@@ -1,6 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:probot_admin/widgets/common_widget_class.dart';
-
 import '../../../config.dart';
 
 class UserSubscribeLListLayout extends StatelessWidget {
@@ -22,8 +20,8 @@ class UserSubscribeLListLayout extends StatelessWidget {
         },
         children: [
           TableRow(
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(53, 193, 255, 0.07),
+              decoration: BoxDecoration(
+                color: appCtrl.appTheme.tableTitleColor,
               ),
               children: [
                 CommonWidgetClass().commonTitleText(fonts.id),

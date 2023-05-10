@@ -1,10 +1,9 @@
-import 'dart:developer';
+
 import 'dart:ui';
-import 'package:probot_admin/routes/index.dart';
+import 'package:flutter/services.dart';
 import 'common/language/index.dart';
 import 'config.dart';
-import 'dart:html' as html;
-
+import 'package:universal_html/html.dart' as html;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,12 +21,10 @@ void main() async {
         appId: "1:3921683177:web:521774f60223d9fde90678"),
   );
 
-
   runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -37,31 +34,46 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var scaffoldDrawerKey = GlobalKey<ScaffoldState>(debugLabel: "drawer");
   var scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: "key2");
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     appCtrl.isLogin = html.window.localStorage[session.isLogin] ?? "false";
-    log(appCtrl.isLogin);
+    SystemChrome.setApplicationSwitcherDescription(
+        ApplicationSwitcherDescription(
+      label: fonts.appName.tr,
+      primaryColor: Theme.of(context).primaryColor.value,
+    ));
     return GetMaterialApp(
       builder: (context, widget) {
-        return StreamBuilder<User?>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-
-              return !snapshot.hasData ? MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: widget!,
-              ) : LoginScreen();
-            }
-        );
+        return Title(
+            title: fonts.appName.tr,
+            color: appCtrl.appTheme.blackColor,
+            child: StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+                  return !snapshot.hasData
+                      ? MediaQuery(
+                          data: MediaQuery.of(context)
+                              .copyWith(textScaleFactor: 1.0),
+                          child: widget!)
+                      : LoginScreen();
+                }));
       },
       debugShowCheckedModeBanner: false,
       translations: Language(),
       locale: const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
       // tran
-      title: "Chatify Admin",
-      home: appCtrl.isLogged == true ? IndexLayout(scaffoldDrawerKey: scaffoldDrawerKey,scaffoldKey: scaffoldKey) : LoginScreen(),
+      title: fonts.appName.tr,
+      home: appCtrl.isLogged == true
+          ? Title(
+              title: fonts.appName.tr,
+              color: appCtrl.appTheme.blackColor,
+              child: IndexLayout(
+                  scaffoldDrawerKey: scaffoldDrawerKey,
+                  scaffoldKey: scaffoldKey))
+          : LoginScreen(),
       getPages: appRoute.getPages,
       theme: AppTheme.fromType(ThemeType.light).themeData,
       darkTheme: AppTheme.fromType(ThemeType.dark).themeData,
@@ -75,7 +87,7 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

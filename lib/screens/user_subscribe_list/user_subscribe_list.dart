@@ -1,15 +1,10 @@
-import 'package:flutter_switch/flutter_switch.dart';
+
 import 'package:pinput/pinput.dart';
-import 'package:probot_admin/screens/user_list/layouts/arrow_back.dart';
-import 'package:probot_admin/screens/user_list/layouts/arrow_forward.dart';
-import 'package:probot_admin/screens/user_list/layouts/search_action.dart';
 import 'package:probot_admin/screens/user_subscribe_list/layouts/subscribe_custom_pagination.dart';
 import 'package:probot_admin/screens/user_subscribe_list/layouts/user_subscribe_list_layout.dart';
 import 'package:probot_admin/screens/user_subscribe_list/layouts/user_subscribe_mobile_layout.dart';
-import 'package:probot_admin/widgets/common_widget_class.dart';
 
 import '../../config.dart';
-import 'layouts/subscribe_pages_drop_down.dart';
 import 'layouts/subscribe_search_action.dart';
 
 class UserSubscribeList extends StatelessWidget {

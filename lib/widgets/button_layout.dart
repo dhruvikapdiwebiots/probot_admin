@@ -1,4 +1,4 @@
-import '../../../config.dart';
+import '../config.dart';
 
 class ButtonLayout extends StatelessWidget {
   final GestureTapCallback? onTap;

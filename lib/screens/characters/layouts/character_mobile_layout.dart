@@ -47,6 +47,7 @@ class CharacterMobileLayout extends StatelessWidget {
                             .inkWell(
                                 onTap: () => accessDenied(
                                     fonts.deleteCharacterConfirmation,
+                                    isModification: false,
                                     onTap: () =>
                                         charactersCtrl.deleteData(e.value.id))),
                         CommonSwitcher(

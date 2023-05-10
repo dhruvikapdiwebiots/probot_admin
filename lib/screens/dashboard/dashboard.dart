@@ -1,4 +1,3 @@
-import 'package:figma_squircle/figma_squircle.dart';
 
 import '../../config.dart';
 
@@ -38,81 +37,23 @@ class Dashboard extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return Container(
-                        height: Sizes.s177,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: const Alignment(9, 8),
-                                end: const Alignment(-9, -8),
-                                colors: [
-                                  appCtrl.appTheme.primary.withOpacity(.1),
-                                  Colors.white,
-                                  Colors.white
-                                ]),
-                            borderRadius: BorderRadius.circular(Insets.i16)),
-                        padding: const EdgeInsets.all(Insets.i40),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              index == 0
-                                                  ? dashboardCtrl.totalUser
-                                                      .toString()
-                                                  : index == 1
-                                                      ? dashboardCtrl
-                                                          .totalUserSubscribe
-                                                          .toString()
-                                                      : dashboardCtrl
-                                                          .totalCharacter
-                                                          .toString(),
-                                              style: AppCss.outfitSemiBold24
-                                                  .textColor(
-                                                      appCtrl.appTheme.number)),
-                                          const VSpace(Sizes.s15),
-                                          Text(
-                                              dashboardCtrl.listItem[index]
-                                                      ["title"]
-                                                  .toString()
-                                                  .tr,
-                                              style: AppCss.outfitMedium16
-                                                  .textColor(
-                                                      appCtrl.appTheme.gray)
-                                                  .letterSpace(1.3))
-                                        ]),
-                                    ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(AppRadius.r15),
-                                      child: SvgPicture.asset(dashboardCtrl
-                                              .listItem[index]["icon"])
-                                          .paddingAll(Insets.i14)
-                                          .decorated(
-                                              color: appCtrl.appTheme.primary,
-                                              borderRadius: SmoothBorderRadius(
-                                                  cornerRadius: 13,
-                                                  cornerSmoothing: 1)),
-                                    )
-                                  ]),
-                            ]))
-                    .paddingAll(Insets.i4)
-                    .decorated(
-                        borderRadius: BorderRadius.circular(Insets.i18),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color.fromRGBO(49, 100, 189, 0.07),
-                              blurRadius: 20)
-                        ],
-                        color: appCtrl.appTheme.whiteColor);
+                return DashboardBoxLayout(index: index).inkWell(onTap: () {
+                  var indexCtrl = Get.isRegistered<IndexController>()
+                      ? Get.find<IndexController>()
+                      : Get.put(IndexController());
+                  if (index == 0) {
+                    indexCtrl.selectedIndex = 1;
+                    indexCtrl.pageName = fonts.users.tr;
+                  } else if (index == 1) {
+                    indexCtrl.selectedIndex = 2;
+                    indexCtrl.pageName = fonts.subscribeUser.tr;
+                  } else {
+                    indexCtrl.selectedIndex = 5;
+                    indexCtrl.pageName = fonts.character.tr;
+                  }
+                  indexCtrl.update();
+                });
               }));
     });
   }
 }
-

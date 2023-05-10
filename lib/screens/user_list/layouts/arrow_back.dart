@@ -11,7 +11,7 @@ class ArrowBack extends StatelessWidget {
     return  IconButton(
       icon:  Icon(Icons.arrow_back_ios, size: 16,color: appCtrl.appTheme.gray,),
       onPressed: onPressed,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
     );
   }
 }

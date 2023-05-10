@@ -3,15 +3,13 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:probot_admin/config.dart';
 import 'package:probot_admin/models/select_language_model.dart';
-import 'package:probot_admin/screens/characters/layouts/add_character.dart';
 import 'dart:io' as io;
-
-import 'package:probot_admin/screens/onboard_screen/layouts/add_onboard.dart';
 
 class OnboardController extends GetxController {
   dynamic usageCtrl;
   bool isLoading = false;
-  bool isAlert = false;
+  bool isAlert = false,
+      isTextAlert = false;
   String id = "",
       languageVal = "en";
   int selectIndex = 0;
@@ -62,38 +60,43 @@ class OnboardController extends GetxController {
         .map((e) => SelectLanguageModel.fromJson(e))
         .toList();
 
-    await FirebaseFirestore.instance.collection(collectionName.onBoardScreen).get().then((value) {
-      if(value.docs.isNotEmpty){
-        id= value.docs[0].id;
+    await FirebaseFirestore.instance
+        .collection(collectionName.onBoardScreen)
+        .get()
+        .then((value) {
+      if (value.docs.isNotEmpty) {
+        id = value.docs[0].id;
         languages = value.docs[0].data()["languages"];
-        List images =value.docs[0].data()["images"];
+        List images = value.docs[0].data()["images"];
         imageUrl = images[0];
         imageUrl2 = images[1];
         imageUrl3 = images[2];
-        languages.asMap().entries.forEach((element) {
-          if(element.value["language"] == "en"){
+        languages
+            .asMap()
+            .entries
+            .forEach((element) {
+          if (element.value["language"] == "en") {
             txtEngTitle.text = element.value["title"];
             txtEngDesc.text = element.value["description"];
-          }else  if(element.value["language"] == "hi"){
+          } else if (element.value["language"] == "hi") {
             txtHiTitle.text = element.value["title"];
             txtHiDesc.text = element.value["description"];
-          }else  if(element.value["language"] == "fr"){
+          } else if (element.value["language"] == "fr") {
             txtFrTitle.text = element.value["title"];
             txtFrDesc.text = element.value["description"];
-          }else  if(element.value["language"] == "it"){
+          } else if (element.value["language"] == "it") {
             txtITTitle.text = element.value["title"];
             txtITDesc.text = element.value["description"];
-          }else  if(element.value["language"] == "ge"){
+          } else if (element.value["language"] == "ge") {
             txtGrTitle.text = element.value["title"];
             txtGrDesc.text = element.value["description"];
-          }else  if(element.value["language"] == "ja"){
+          } else if (element.value["language"] == "ja") {
             txtJpTitle.text = element.value["title"];
             txtJpDesc.text = element.value["description"];
           }
         });
         update();
       }
-
     });
     update();
   }
@@ -245,10 +248,6 @@ class OnboardController extends GetxController {
         var image = dropImage;
         onboardUploadWebImage2 = image;
 
-        Image image1 = Image.memory(onboardUploadWebImage2);
-
-        ImageInfo info = await getImageInfo(image1);
-
         onboardWebImage2 = onboardUploadWebImage2;
         onboardPickImage2 = io.File("a");
         isOnboardUploadFile2 = true;
@@ -274,7 +273,6 @@ class OnboardController extends GetxController {
 
         Image image1 = Image.memory(onboardUploadWebImage2);
         log("image1 : $image1");
-        ImageInfo info = await getImageInfo(image1);
 
         onboardWebImage2 = onboardUploadWebImage2;
         onboardPickImage2 = io.File(onboard2File!.path);
@@ -305,8 +303,6 @@ class OnboardController extends GetxController {
         var image = dropImage;
         onboard3UploadWebImage3 = image;
 
-        Image image1 = Image.memory(onboard3UploadWebImage3);
-
         onboardWebImage3 = onboard3UploadWebImage3;
         onboardPickImage3 = io.File("a");
         isOnboardUploadFile3 = true;
@@ -333,7 +329,6 @@ class OnboardController extends GetxController {
 
         Image image1 = Image.memory(onboard3UploadWebImage3);
         log("image1 : $image1");
-        ImageInfo info = await getImageInfo(image1);
 
         onboardWebImage3 = onboard3UploadWebImage3;
         onboardPickImage3 = io.File(onboard3File!.path);
@@ -357,143 +352,233 @@ class OnboardController extends GetxController {
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
-      isLoading = true;
-      if (pickImage != null) {
+      log("CHECK");
+      if (txtEngTitle.text.isNotEmpty && txtEngDesc.text.isNotEmpty) {
+        isTextAlert = false;
         update();
-        String fileName = DateTime
-            .now()
-            .millisecondsSinceEpoch
-            .toString();
-        Reference reference = FirebaseStorage.instance.ref().child(fileName);
-
-        UploadTask? uploadTask;
-        uploadTask = reference.putData(webImage);
-
-        uploadTask.then((res) async {
-          log("res : $res");
-          res.ref.getDownloadURL().then((downloadUrl) async {
-            imageUrl = downloadUrl;
-            log("imageUrl : $imageUrl");
+        if (txtHiTitle.text.isNotEmpty && txtHiDesc.text.isNotEmpty) {
+          isTextAlert = false;
+          update();
+          if (txtFrTitle.text.isNotEmpty && txtFrDesc.text.isNotEmpty) {
+            isTextAlert = false;
             update();
-            await Future.delayed(Durations.s3);
-          }, onError: (err) {
-            update();
-          });
-        });
-      }
+            if (txtITTitle.text.isNotEmpty && txtITDesc.text.isNotEmpty) {
+              isTextAlert = false;
+              update();
+              if (txtGrTitle.text.isNotEmpty && txtGrDesc.text.isNotEmpty) {
+                isTextAlert = false;
+                update();
+                if (txtJpTitle.text.isNotEmpty && txtJpDesc.text.isNotEmpty) {
+                  log("FORM VALIDATE :pickImage");
+                  isLoading = true;
+                  isTextAlert = false;
+                  update();
 
-      if (onboardPickImage2 != null) {
+                  if (pickImage != null &&
+                      onboardPickImage2 != null &&
+                      onboardPickImage3 != null) {
+                    if (pickImage != null) {
+                      isAlert = false;
+                      update();
+                      String fileName =
+                      DateTime
+                          .now()
+                          .millisecondsSinceEpoch
+                          .toString();
+                      Reference reference =
+                      FirebaseStorage.instance.ref().child(fileName);
+
+                      UploadTask? uploadTask;
+                      uploadTask = reference.putData(webImage);
+
+                      uploadTask.then((res) async {
+                        log("res : $res");
+                        res.ref.getDownloadURL().then((downloadUrl) async {
+                          imageUrl = downloadUrl;
+                          log("imageUrl : $imageUrl");
+                          update();
+                          await Future.delayed(Durations.s3);
+                        }, onError: (err) {
+                          update();
+                        });
+                      });
+                    }
+                    if (onboardPickImage2 != null) {
+                      update();
+                      String fileName =
+                      DateTime
+                          .now()
+                          .millisecondsSinceEpoch
+                          .toString();
+                      Reference reference =
+                      FirebaseStorage.instance.ref().child(fileName);
+
+                      UploadTask? uploadTask;
+                      uploadTask = reference.putData(onboardWebImage2);
+
+                      uploadTask.then((res) async {
+                        log("res : $res");
+                        res.ref.getDownloadURL().then((downloadUrl) async {
+                          imageUrl2 = downloadUrl;
+                          log("imageUrl2 : $imageUrl2");
+                          update();
+                          await Future.delayed(Durations.s3);
+                        }, onError: (err) {
+                          update();
+                        });
+                      });
+                    }
+
+                    if (onboardPickImage3 != null) {
+                      update();
+                      String fileName =
+                      DateTime
+                          .now()
+                          .millisecondsSinceEpoch
+                          .toString();
+                      Reference reference =
+                      FirebaseStorage.instance.ref().child(fileName);
+
+                      UploadTask? uploadTask;
+                      uploadTask = reference.putData(onboardWebImage3);
+
+                      uploadTask.then((res) async {
+                        log("res : $res");
+                        res.ref.getDownloadURL().then((downloadUrl) async {
+                          imageUrl3 = downloadUrl;
+                          log("imageUrl3 : $imageUrl3");
+                          update();
+                          addData();
+                          await Future.delayed(Durations.s3);
+                        }, onError: (err) {
+                          update();
+                        });
+                      });
+                    }
+                  } else {
+                    log("PICKED IMAGE : ${ pickImage}");
+                    isAlert = true;
+
+                    isTextAlert = false;
+                    isLoading = false;
+                    log(
+                        "onboardCtrl.isAlert == true && onboardCtrl.pickImage == null : ${isAlert ==
+                            true && pickImage == null}");
+                    update();
+                  }
+                } else {
+                  selectIndex = 5;
+                  isTextAlert = true;
+                  update();
+                }
+              } else {
+                selectIndex = 4;
+                isTextAlert = true;
+                update();
+              }
+            } else {
+              selectIndex = 3;
+              isTextAlert = true;
+              update();
+            }
+          } else {
+            selectIndex = 2;
+            isTextAlert = true;
+            update();
+          }
+        } else {
+          selectIndex = 1;
+          isTextAlert = true;
+          update();
+        }
+      } else {
+        selectIndex = 0;
+        isTextAlert = true;
         update();
-        String fileName = DateTime
-            .now()
-            .millisecondsSinceEpoch
-            .toString();
-        Reference reference = FirebaseStorage.instance.ref().child(fileName);
-
-        UploadTask? uploadTask;
-        uploadTask = reference.putData(onboardWebImage2);
-
-        uploadTask.then((res) async {
-          log("res : $res");
-          res.ref.getDownloadURL().then((downloadUrl) async {
-            imageUrl2 = downloadUrl;
-            log("imageUrl2 : $imageUrl2");
-            update();
-            await Future.delayed(Durations.s3);
-          }, onError: (err) {
-            update();
-          });
-        });
-      }
-
-      if (onboardPickImage3 != null) {
-        update();
-        String fileName = DateTime
-            .now()
-            .millisecondsSinceEpoch
-            .toString();
-        Reference reference = FirebaseStorage.instance.ref().child(fileName);
-
-        UploadTask? uploadTask;
-        uploadTask = reference.putData(onboardWebImage3);
-
-        uploadTask.then((res) async {
-          log("res : $res");
-          res.ref.getDownloadURL().then((downloadUrl) async {
-            imageUrl3 = downloadUrl;
-            log("imageUrl3 : $imageUrl3");
-            update();
-            addData();
-            await Future.delayed(Durations.s3);
-          }, onError: (err) {
-            update();
-          });
-        });
       }
     }
+    await Future.delayed(const Duration(seconds: 3)).then((value) {
+      isTextAlert = false;
+      update();
+    });
   }
 
+  updateData() async {
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      isLoading = true;
+      update();
 
-  updateData()async{
-    isLoading = true; update();
-
-    if(formKey.currentState!.validate()){
-      if(imageUrl.isNotEmpty && imageUrl2.isNotEmpty && imageUrl3.isNotEmpty) {
-
-        await FirebaseFirestore.instance.collection(collectionName.onBoardScreen).doc(id)
-            .update({
-          "images": [imageUrl, imageUrl2, imageUrl3],
-          "languages": [
-            {
-              "title": txtEngTitle.text,
-              "description": txtEngDesc.text,
-              "language": "en"
-            },
-            {
-              "title": txtHiTitle.text,
-              "description": txtHiDesc.text,
-              "language": "hi"
-            },
-            {
-              "title": txtFrTitle.text,
-              "description": txtFrDesc.text,
-              "language": "fr"
-            },
-            {
-              "title": txtITTitle.text,
-              "description": txtITDesc.text,
-              "language": "it"
-            },
-            {
-              "title": txtGrTitle.text,
-              "description": txtGrDesc.text,
-              "language": "ge"
-            },
-            {
-              "title": txtJpTitle.text,
-              "description": txtJpDesc.text,
-              "language": "ja"
-            }
-          ]
-        }).then((value) {
-          appCtrl.isAlert = false;
+      if (formKey.currentState!.validate()) {
+        if (imageUrl.isNotEmpty &&
+            imageUrl2.isNotEmpty &&
+            imageUrl3.isNotEmpty) {
+          await FirebaseFirestore.instance
+              .collection(collectionName.onBoardScreen)
+              .doc(id)
+              .update({
+            "images": [imageUrl, imageUrl2, imageUrl3],
+            "languages": [
+              {
+                "title": txtEngTitle.text,
+                "description": txtEngDesc.text,
+                "language": "en"
+              },
+              {
+                "title": txtHiTitle.text,
+                "description": txtHiDesc.text,
+                "language": "hi"
+              },
+              {
+                "title": txtFrTitle.text,
+                "description": txtFrDesc.text,
+                "language": "fr"
+              },
+              {
+                "title": txtITTitle.text,
+                "description": txtITDesc.text,
+                "language": "it"
+              },
+              {
+                "title": txtGrTitle.text,
+                "description": txtGrDesc.text,
+                "language": "ge"
+              },
+              {
+                "title": txtJpTitle.text,
+                "description": txtJpDesc.text,
+                "language": "ja"
+              }
+            ]
+          }).then((value) {
+            isAlert = false;
+            isLoading = false;
+            update();
+          });
+        } else {
           isLoading = false;
+          isAlert = true;
           update();
-        });
-      }else{
-        appCtrl.isAlert = true;
+        }
+      } else {
+        isLoading = false;
+        isAlert = true;
         update();
       }
     }
   }
 
   addData() async {
-    isLoading = true; update();
+    isLoading = true;
+    update();
+    log("ADD");
 
-    if(formKey.currentState!.validate()){
-      if(imageUrl.isNotEmpty && imageUrl2.isNotEmpty && imageUrl3.isNotEmpty) {
-
-        await FirebaseFirestore.instance.collection(collectionName.onBoardScreen)
+    if (imageUrl.isNotEmpty && imageUrl2.isNotEmpty && imageUrl3.isNotEmpty) {
+      if (formKey.currentState!.validate()) {
+        await FirebaseFirestore.instance
+            .collection(collectionName.onBoardScreen)
             .add({
           "images": [imageUrl, imageUrl2, imageUrl3],
           "languages": [
@@ -529,14 +614,19 @@ class OnboardController extends GetxController {
             }
           ]
         }).then((value) {
-          appCtrl.isAlert = false;
+          isAlert = false;
           isLoading = false;
           update();
         });
-      }else{
-        appCtrl.isAlert = true;
+      } else {
+        isLoading = false;
+        isAlert = true;
         update();
       }
+    } else {
+      isLoading = false;
+      isAlert = true;
+      update();
     }
   }
 

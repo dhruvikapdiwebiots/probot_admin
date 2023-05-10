@@ -5,6 +5,7 @@ class CollectionName{
   String userSubscribe = "userSubscribe";
   String characters = "characters";
   String onBoardScreen = "onBoardScreen";
+  String onBoardScreenDemo = "onBoardScreenDemo";
   String config = "config";
   String categoryAccess = "categoryAccess";
   String categorySuggestion = "categorySuggestion";

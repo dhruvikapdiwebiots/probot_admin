@@ -31,7 +31,7 @@ class _AddTextFormFieldState extends State<AddTextFormField> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _nameController!.text = suggestionCtrl.suggestionList[widget.index!] ?? '';
+      _nameController!.text = suggestionCtrl.suggestionList[widget.index!];
     });
     return GetBuilder<CategorySuggestionController>(builder: (suggestionCtrl) {
       return CommonTextBox(

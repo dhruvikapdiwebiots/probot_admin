@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 class Fonts{
 
+  final appName = "appName";
   final selectLanguage = "selectLanguage";
   final lightMode = "lightMode";
   final darkMode = "darkMode";
@@ -141,6 +142,19 @@ class Fonts{
   final emailGeneratorEnable = "emailGeneratorEnable";
   final suggestionList = "suggestionList";
   final updateSuggestion = "updateSuggestion";
+  final users = "users";
+  final subscribeUser = "subscribeUser";
+  final character = "character";
+  final manageYour = "manageYour";
+  final getBetterExperience = "getBetterExperience";
+  final credentialsForLogin = "credentialsForLogin";
+  final fillTheBelowForm = "fillTheBelowForm";
+  final alert = "alert";
+  final cancel = "cancel";
+  final camera = "camera";
+  final gallery = "gallery";
+  final inValidPassword = "inValidPassword";
+  final invalidEmailPassword = "invalidEmailPassword";
 
 
 }

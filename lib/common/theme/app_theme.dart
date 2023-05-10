@@ -48,6 +48,8 @@ class AppTheme {
   Color number;
   Color dark;
   Color fillColor;
+  Color dashboardShadowColor;
+  Color tableTitleColor;
 
   /// Default constructor
   AppTheme({
@@ -89,6 +91,8 @@ class AppTheme {
     required this.number,
     required this.dark,
     required this.fillColor,
+    required this.dashboardShadowColor,
+    required this.tableTitleColor,
   });
 
   /// fromType factory constructor
@@ -130,10 +134,12 @@ class AppTheme {
           gradientColor: const Color(0xFF1B1D2E),
           textColor: Colors.white,
           greyLight25: const Color(0xFFEDEFF4),
-            switchThumb: Colors.white10,
+          switchThumb: Colors.white10,
           number: const Color(0xff363941),
           dark: const Color(0xff010D21),
           fillColor: const Color(0xFFF5F5F6),
+          dashboardShadowColor: const Color.fromRGBO(49, 100, 189, 0.07),
+          tableTitleColor: const Color.fromRGBO(53, 193, 255, 0.07),
         );
 
       case ThemeType.dark:
@@ -173,9 +179,11 @@ class AppTheme {
           gradientColor: const Color(0xFF1B1D2E),
           greyLight25: Colors.black,
           switchThumb: Colors.grey.shade500,
-            number: const Color(0xff363941),
+          number: const Color(0xff363941),
           dark: Colors.white,
           fillColor: const Color(0xFFF5F5F6),
+          dashboardShadowColor: const Color.fromRGBO(49, 100, 189, 0.07),
+          tableTitleColor: const Color.fromRGBO(53, 193, 255, 0.07),
         );
     }
   }

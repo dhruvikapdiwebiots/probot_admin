@@ -13,7 +13,7 @@ class LoginCommonClass {
 
   //title layout
   Widget titleLayout({String? title}) => Text(title.toString().tr,
-          style: AppCss.outfitRegular18.textColor(appCtrl.appTheme.secondary))
+          style: AppCss.outfitRegular16.textColor(appCtrl.appTheme.secondary))
       .alignment(Alignment.centerLeft);
 
   //forgot password

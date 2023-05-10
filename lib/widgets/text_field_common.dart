@@ -1,4 +1,4 @@
-import '../../../config.dart';
+import '../config.dart';
 
 class MobileTextFieldCommon extends StatelessWidget {
   final String? title;

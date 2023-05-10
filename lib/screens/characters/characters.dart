@@ -29,40 +29,49 @@ class CharacterLayout extends StatelessWidget {
                     .snapshots(),
                 builder: (context, snapShot) {
                   if (snapShot.hasData) {
-                    return Responsive.isDesktop(context) ?CharacterListTable(children: [
-                      CharacterWidgetClass().tableWidget(),
-                      ...snapShot.data!.docs.asMap().entries.map((e) {
-                        return TableRow(children: [
-                          CommonWidgetClass()
-                              .commonValueText(e.value.id)
-                              .marginSymmetric(
-                                  vertical: Insets.i12, horizontal: Insets.i10),
-                          CommonWidgetClass()
-                              .commonValueText(e.value.data()["title"])
-                              .marginSymmetric(vertical: Insets.i12),
-                          CommonWidgetClass()
-                              .commonValueText(e.value.data()["image"],
-                                  isImage: true)
-                              .marginSymmetric(vertical: Insets.i12),
-                          CommonWidgetClass()
-                              .commonValueText(e.value.data()["message"])
-                              .marginSymmetric(vertical: Insets.i12),
-                          CommonSwitcher(
-                              isActive: e.value.data()["isActive"] ?? true,
-                              onToggle: (val) => charactersCtrl.isActiveChange(
-                                  e.value.id, val)),
-                          CharacterWidgetClass()
-                              .actionLayout(
-                                  onTap: () => charactersCtrl
-                                      .addCharacterDialog(data: e.value.data()),
-                                  deleteTap: () => accessDenied(
-                                      fonts.deleteCharacterConfirmation.tr,
-                                      onTap: () => charactersCtrl
-                                          .deleteData(e.value.id)))
-                              .marginSymmetric(vertical: Insets.i12)
-                        ]);
-                      }).toList()
-                    ]) : CharacterMobileLayout(snapShot: snapShot,);
+                    return Responsive.isDesktop(context)
+                        ? CharacterListTable(children: [
+                            CharacterWidgetClass().tableWidget(),
+                            ...snapShot.data!.docs.asMap().entries.map((e) {
+                              return TableRow(children: [
+                                CommonWidgetClass()
+                                    .commonValueText(e.value.id)
+                                    .marginSymmetric(
+                                        vertical: Insets.i12,
+                                        horizontal: Insets.i10),
+                                CommonWidgetClass()
+                                    .commonValueText(e.value.data()["title"])
+                                    .marginSymmetric(vertical: Insets.i12),
+                                CommonWidgetClass()
+                                    .commonValueText(e.value.data()["image"],
+                                        isImage: true)
+                                    .marginSymmetric(vertical: Insets.i12),
+                                CommonWidgetClass()
+                                    .commonValueText(e.value.data()["message"])
+                                    .marginSymmetric(vertical: Insets.i12),
+                                CommonSwitcher(
+                                    isActive:
+                                        e.value.data()["isActive"] ?? true,
+                                    onToggle: (val) => charactersCtrl
+                                        .isActiveChange(e.value.id, val)),
+                                CharacterWidgetClass()
+                                    .actionLayout(
+                                        onTap: () =>
+                                            charactersCtrl.addCharacterDialog(
+                                                data: e.value.data()),
+                                        deleteTap: () => accessDenied(
+                                            fonts
+                                                .deleteCharacterConfirmation.tr,
+                                            isModification: false,
+                                            onTap: () => charactersCtrl
+                                                .deleteData(e.value.id)))
+                                    .marginSymmetric(vertical: Insets.i12)
+                              ]);
+                            }).toList()
+                          ])
+                        : CharacterMobileLayout(
+                            snapShot: snapShot,
+                          );
                   } else {
                     return Container();
                   }

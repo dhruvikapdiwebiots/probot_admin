@@ -1,6 +1,4 @@
 import 'package:pinput/pinput.dart';
-import 'package:probot_admin/screens/user_list/layouts/user_custom_pagination.dart';
-import 'package:probot_admin/screens/user_list/layouts/user_mobile_layout.dart';
 import '../../config.dart';
 
 class UsersList extends StatelessWidget {
@@ -26,9 +24,11 @@ class UsersList extends StatelessWidget {
                       .snapshots(),
               builder: (context, snapShot) {
                 if (snapShot.hasData) {
-                  userSettingCtrl.lastVisible = snapShot.data.docs.length - 1;
-                  userSettingCtrl.lastIndexId =
-                      snapShot.data.docs[snapShot.data.docs.length - 1].id;
+                  if(snapShot.data.docs.length > 0) {
+                    userSettingCtrl.lastVisible = snapShot.data.docs.length - 1;
+                    userSettingCtrl.lastIndexId =
+                        snapShot.data.docs[snapShot.data.docs.length - 1].id;
+                  }
                   return  Responsive.isDesktop(context) ? UserListLayout(
                     snapShot: snapShot,
                   ) :UserMobileLayout( snapShot: snapShot);

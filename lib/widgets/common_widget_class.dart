@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../config.dart';
 
 class CommonWidgetClass {
@@ -6,7 +8,7 @@ class CommonWidgetClass {
         children: [
           Text(
             title.toString().tr.toUpperCase(),
-            style: AppCss.outfitMedium16.textColor(appCtrl.isTheme
+            style: AppCss.outfitMedium14.textColor(appCtrl.isTheme
                 ? appCtrl.appTheme.white
                 : appCtrl.appTheme.secondary),
           ),
@@ -39,4 +41,26 @@ class CommonWidgetClass {
                 )
         ],
       );
+
+  //credential copy
+  Widget credentialCopy(title) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title,
+              style:
+                  AppCss.outfitMedium14.textColor(appCtrl.appTheme.blackColor)),
+          Icon(Icons.copy, size: Sizes.s20, color: appCtrl.appTheme.blackColor)
+              .inkWell(onTap: () {
+            Clipboard.setData(ClipboardData(text: title));
+          })
+        ],
+      );
+
+  //action layout
+  Widget actionLayout({GestureTapCallback? onTap, isUser = true}) =>
+      Column(children: [
+        Icon(isUser ?Icons.delete : Icons.edit,
+            color: appCtrl.appTheme.primary)
+            .inkWell(onTap:onTap)
+      ]).marginSymmetric(vertical: Insets.i15);
 }
