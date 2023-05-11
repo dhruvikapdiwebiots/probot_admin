@@ -1,6 +1,4 @@
-
 import 'package:probot_admin/config.dart';
-
 
 class GeneralSettingController extends GetxController {
   dynamic usageCtrl;
@@ -52,46 +50,46 @@ class GeneralSettingController extends GetxController {
         txtFacebookAndroidId.text = usageCtrl["facebookAddAndroidId"];
         txtFacebookInterstitialId.text = usageCtrl["facebookInterstitialAd"];
         txtFacebookRewardId.text = usageCtrl["facebookRewardAd"];
-        isGoogleAd =usageCtrl["isGoogleAdmobEnable"] == true ? "google" : "facebook";
-
+        isGoogleAd =
+            usageCtrl["isGoogleAdmobEnable"] == true ? "google" : "facebook";
       }
     });
     update();
   }
 
-  updateData() async { bool isLoginTest =
-  appCtrl.storage.read(session.isLoginTest);
-  if (isLoginTest) {
-    accessDenied(fonts.modification.tr);
-  } else {
-    await FirebaseFirestore.instance.collection("config").doc(id).update({
-      "bannerAddId": txtBannerAddId.text,
-      "bannerIOSId": txtBannerIOSId.text,
-      "chatGPTKey": txtChatGPTKey.text,
-      "interstitialAdIdAndroid": txtInterstitialAdIdAndroid.text,
-      "interstitialAdIdIOS": txtInterstitialAdIdIOS.text,
-      "payPalClientId": txtPayPalClientId.text,
-      "payPalSecret": txtPayPalSecret.text,
-      "razorPayKey": txtRazorPayKey.text,
-      "razorPaySecret": txtRazorSecret.text,
-      "stripeKey": txtStripeKey.text,
-      "stripePublishKey": txtStripePublishKey.text,
-      "balance": txtBalance.text,
-      "rewardAndroidId": txtRewardAndroidId.text,
-      "rewardIOSId": txtRewardIOSId.text,
-    });
-  }
-  }
-
-  commonSwitcherValueChange(title,value)async{
-    bool isLoginTest =
-    appCtrl.storage.read(session.isLoginTest);
+  updateData() async {
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
       await FirebaseFirestore.instance.collection("config").doc(id).update({
-        title: value
+        "bannerAddId": txtBannerAddId.text,
+        "bannerIOSId": txtBannerIOSId.text,
+        "chatGPTKey": txtChatGPTKey.text,
+        "interstitialAdIdAndroid": txtInterstitialAdIdAndroid.text,
+        "interstitialAdIdIOS": txtInterstitialAdIdIOS.text,
+        "payPalClientId": txtPayPalClientId.text,
+        "payPalSecret": txtPayPalSecret.text,
+        "razorPayKey": txtRazorPayKey.text,
+        "razorPaySecret": txtRazorSecret.text,
+        "stripeKey": txtStripeKey.text,
+        "stripePublishKey": txtStripePublishKey.text,
+        "balance": int.parse(txtBalance.text),
+        "rewardAndroidId": txtRewardAndroidId.text,
+        "rewardIOSId": txtRewardIOSId.text,
       });
+    }
+  }
+
+  commonSwitcherValueChange(title, value) async {
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      await FirebaseFirestore.instance
+          .collection("config")
+          .doc(id)
+          .update({title: value});
     }
   }
 

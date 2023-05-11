@@ -14,7 +14,17 @@ class SubscriptionListController extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   //get data from firebase
-  getData() async {}
+  getData() async {
+    await FirebaseFirestore.instance
+        .collection(collectionName.plans)
+        .get()
+        .then((value) {
+      if (value.docs.isNotEmpty) {
+        id = value.docs[0].id;
+        usageCtrl = value.docs[0].data();
+      }
+    });
+  }
 
   //update data
   updateData() async {
