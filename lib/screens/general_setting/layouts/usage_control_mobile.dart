@@ -78,6 +78,16 @@ class UsageControlMobile extends StatelessWidget {
             onChanged: (val) =>
                 usageCtrl.commonSwitcherValueChange("isCameraEnable", val)),
         MobileSwitchCommon(
+            title: fonts.isPaystack,
+            value: configModel!.isPaystack,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isPaystack", val)),
+        MobileSwitchCommon(
+            title: fonts.isFlutterWave,
+            value: configModel!.isFlutterWave,
+            onChanged: (val) =>
+                usageCtrl.commonSwitcherValueChange("isFlutterWave", val)),
+        MobileSwitchCommon(
             title: fonts.isCategorySuggestion,
             value: configModel!.isCategorySuggestion,
             onChanged: (val) =>
@@ -91,6 +101,10 @@ class UsageControlMobile extends StatelessWidget {
             validator: (number) => Validation().statusValidation(number),
             title: fonts.balance,
             controller: usageCtrl.txtBalance),
+        MobileTextFieldCommon(
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.rewardPoint,
+            controller: usageCtrl.txtRewardPoint),
         MobileTextFieldCommon(
             validator: (number) => Validation().statusValidation(number),
             title: fonts.bannerAddId,
@@ -158,10 +172,17 @@ class UsageControlMobile extends StatelessWidget {
             title: fonts.facebookInterstitialAdId,
             controller: usageCtrl.txtFacebookInterstitialId),
         MobileTextFieldCommon(
-
             validator: (number) => Validation().statusValidation(number),
             title: fonts.facebookRewardId,
             controller: usageCtrl.txtFacebookRewardId),
+        MobileTextFieldCommon(
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.paystackPublicKey,
+            controller: usageCtrl.txtPayStackPublicKey),
+        MobileTextFieldCommon(
+            validator: (number) => Validation().statusValidation(number),
+            title: fonts.flutterWavePublicKey,
+            controller: usageCtrl.txtFlutterWavePublicKey),
       ]).paddingAll(Insets.i10);
     });
   }

@@ -220,4 +220,11 @@ final dynamic en = {
 
   "inValidPassword": "Invalid Password",
   "invalidEmailPassword": "Invalid Email or Password",
+
+  "isPaystack": "Pay Stack Enable",
+  "rewardPoint": "Reward Points",
+  "isFlutterWave": "Flutter Wave Enable",
+  "flutterWavePublicKey": "Flutter Wave Publish Key",
+  "paystackPublicKey": "Pay Stack Publish Key",
+
 };

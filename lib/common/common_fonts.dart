@@ -64,6 +64,8 @@ class Fonts{
   final planType = "planType";
   final type = "type";
   final isStripeEnable = "isStripeEnable";
+  final isPaystack = "isPaystack";
+  final isFlutterWave = "isFlutterWave";
   final isPayPalEnable = "isPayPalEnable";
   final isInAppEnable = "isInAppEnable";
   final isRazorPayEnable = "isRazorPayEnable";
@@ -88,6 +90,7 @@ class Fonts{
   final stripeKey = "stripeKey";
   final stripePublishKey = "stripePublishKey";
   final balance = "balance";
+  final rewardPoint = "rewardPoint";
   final rewardAndroidId = "rewardAndroidId";
   final rewardIOSId = "rewardIOSId";
   final rateAppIOSId = "rateAppIOSId";
@@ -150,11 +153,14 @@ class Fonts{
   final credentialsForLogin = "credentialsForLogin";
   final fillTheBelowForm = "fillTheBelowForm";
   final alert = "alert";
+  final close = "close";
   final cancel = "cancel";
   final camera = "camera";
   final gallery = "gallery";
   final inValidPassword = "inValidPassword";
   final invalidEmailPassword = "invalidEmailPassword";
+  final flutterWavePublicKey = "flutterWavePublicKey";
+  final paystackPublicKey = "paystackPublicKey";
 
 
 }

@@ -21,7 +21,7 @@ class ButtonLayout extends StatelessWidget {
                 .paddingOnly(left: Insets.i15)
             : Container(),
         CommonButton(
-                title: fonts.update,
+                title: fonts.update.tr,
                 onTap: onTap,
                 width: Sizes.s150,
                 style: AppCss.outfitMedium18

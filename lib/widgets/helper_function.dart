@@ -94,17 +94,12 @@ accessDenied(String content,{GestureTapCallback? onTap,isModification = true}) {
       content: Text(content.tr),
       actions: <Widget>[
         CommonButton(
-          title: fonts.cancel.tr,
+          title: fonts.close.tr,
           width: Sizes.s80,
           style: AppCss.outfitMedium16.textColor(appCtrl.appTheme.white),
           onTap: () => Get.back(),
         ),
-        CommonButton(
-          title: fonts.delete.tr,
-          width: Sizes.s80,
-          style: AppCss.outfitMedium16.textColor(appCtrl.appTheme.white),
-          onTap:onTap,
-        )
+
       ],
     ),
     barrierDismissible: false,

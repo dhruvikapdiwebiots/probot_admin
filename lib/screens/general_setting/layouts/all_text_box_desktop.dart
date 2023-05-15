@@ -112,6 +112,16 @@ class AllTextBoxDesktop extends StatelessWidget {
                             controller: settingCtrl
                                 .txtFacebookRewardId),
                         const VSpace(Sizes.s30),
+                        DesktopTextFieldCommon(
+
+                            validator: (number) =>
+                                Validation()
+                                    .statusValidation(
+                                    number),
+                            title: fonts.paystackPublicKey,
+                            controller: settingCtrl
+                                .txtPayStackPublicKey),
+                        const VSpace(Sizes.s30),
                       ],
                     ).marginOnly(top: Insets.i15),
                   ),
@@ -190,6 +200,7 @@ class AllTextBoxDesktop extends StatelessWidget {
                                 controller: settingCtrl
                                     .txtStripePublishKey),
                             const VSpace(Sizes.s30),
+
                             DesktopTextFieldCommon(
 
                                 validator: (number) =>
@@ -200,6 +211,25 @@ class AllTextBoxDesktop extends StatelessWidget {
                                 fonts.facebookInterstitialAdId,
                                 controller: settingCtrl
                                     .txtFacebookInterstitialId),
+                            const VSpace(Sizes.s30),
+                            DesktopTextFieldCommon(
+                                validator: (number) =>
+                                    Validation()
+                                        .statusValidation(
+                                        number),
+                                title: fonts.rewardPoint,
+                                controller:
+                                settingCtrl.txtRewardPoint),
+                            const VSpace(Sizes.s30),
+                            DesktopTextFieldCommon(
+                                validator: (number) =>
+                                    Validation()
+                                        .statusValidation(
+                                        number),
+                                title: fonts.flutterWavePublicKey,
+                                controller:
+                                settingCtrl.txtFlutterWavePublicKey),
+                            const VSpace(Sizes.s30),
                           ]).marginOnly(top: Insets.i15)),
                 ],
               ).paddingAll(Insets.i30),

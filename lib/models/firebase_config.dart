@@ -24,10 +24,10 @@ class FirebaseConfigModel {
       facebookAddIOSId,
       facebookInterstitialIOSAd,
       facebookRewardIOSAd,
-      splashLogo,drawerLogo,homeLogo;
+      splashLogo,drawerLogo,homeLogo,flutterWavePublicKey,paystackPublicKey;
   bool? isChatShow,isCategorySuggestion,isVoiceEnable,isCameraEnable;
   bool? isImageGeneratorShow;
-  int? balance;
+  int? balance,rewardPoint;
   bool? isTextCompletionShow;
   bool? isTheme,isRTL;
   bool? isAddShow,
@@ -38,7 +38,7 @@ class FirebaseConfigModel {
       isChatHistory,
       isGuestLoginEnable,
       isFacebookAdEnable,
-      isGoogleAdmobEnable;
+      isGoogleAdmobEnable,isFlutterWave,isPaystack;
 
   FirebaseConfigModel(
       {this.bannerAddId,
@@ -84,7 +84,7 @@ class FirebaseConfigModel {
       this.isChatHistory,
       this.isGuestLoginEnable,
       this.isGoogleAdmobEnable,
-      this.balance});
+      this.balance,this.flutterWavePublicKey,this.isFlutterWave,this.isPaystack,this.paystackPublicKey,this.rewardPoint});
 
   FirebaseConfigModel.fromJson(Map<String, dynamic> json) {
     bannerAddId = json['bannerAddId'] ?? "";
@@ -131,6 +131,11 @@ class FirebaseConfigModel {
     razorPayKey = json['razorPayKey'] ?? "";
     razorPaySecret = json['razorPaySecret'] ?? "";
     balance = json['balance'] ?? 5;
+    rewardPoint = json['rewardPoint'] ?? 1;
+    paystackPublicKey = json['paystackPublicKey'] ?? "";
+    isPaystack = json['isPaystack'] ?? true;
+    isFlutterWave = json['isFlutterWave'] ?? true;
+    flutterWavePublicKey = json['flutterWavePublicKey'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -177,6 +182,11 @@ class FirebaseConfigModel {
     data['isGuestLoginEnable'] = isGuestLoginEnable;
     data['isGoogleAdmobEnable'] = isGoogleAdmobEnable;
     data['balance'] = balance;
+    data['rewardPoint'] = rewardPoint;
+    data['flutterWavePublicKey'] = flutterWavePublicKey;
+    data['isFlutterWave'] = isFlutterWave;
+    data['isPaystack'] = isPaystack;
+    data['paystackPublicKey'] = paystackPublicKey;
     return data;
   }
 }

@@ -19,11 +19,14 @@ class GeneralSettingController extends GetxController {
   TextEditingController txtStripeKey = TextEditingController();
   TextEditingController txtStripePublishKey = TextEditingController();
   TextEditingController txtBalance = TextEditingController();
+  TextEditingController txtRewardPoint = TextEditingController();
   TextEditingController txtRewardAndroidId = TextEditingController();
   TextEditingController txtRewardIOSId = TextEditingController();
   TextEditingController txtFacebookAndroidId = TextEditingController();
   TextEditingController txtFacebookInterstitialId = TextEditingController();
   TextEditingController txtFacebookRewardId = TextEditingController();
+  TextEditingController txtPayStackPublicKey = TextEditingController();
+  TextEditingController txtFlutterWavePublicKey = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   //get data from firebase
@@ -45,11 +48,14 @@ class GeneralSettingController extends GetxController {
         txtStripeKey.text = usageCtrl["stripeKey"];
         txtStripePublishKey.text = usageCtrl["stripePublishKey"];
         txtBalance.text = usageCtrl["balance"].toString();
+        txtRewardPoint.text = usageCtrl["rewardPoint"].toString();
         txtRewardAndroidId.text = usageCtrl["rewardAndroidId"];
         txtRewardIOSId.text = usageCtrl["rewardIOSId"];
         txtFacebookAndroidId.text = usageCtrl["facebookAddAndroidId"];
         txtFacebookInterstitialId.text = usageCtrl["facebookInterstitialAd"];
-        txtFacebookRewardId.text = usageCtrl["facebookRewardAd"];
+        txtFacebookInterstitialId.text = usageCtrl["facebookInterstitialAd"];
+        txtPayStackPublicKey.text = usageCtrl["paystackPublicKey"];
+        txtFlutterWavePublicKey.text = usageCtrl["flutterWavePublicKey"];
         isGoogleAd =
             usageCtrl["isGoogleAdmobEnable"] == true ? "google" : "facebook";
       }
@@ -75,8 +81,11 @@ class GeneralSettingController extends GetxController {
         "stripeKey": txtStripeKey.text,
         "stripePublishKey": txtStripePublishKey.text,
         "balance": int.parse(txtBalance.text),
+        "rewardPoint": int.parse(txtRewardPoint.text),
         "rewardAndroidId": txtRewardAndroidId.text,
         "rewardIOSId": txtRewardIOSId.text,
+        "paystackPublicKey": txtPayStackPublicKey.text,
+        "flutterWavePublicKey": txtFlutterWavePublicKey.text,
       });
     }
   }

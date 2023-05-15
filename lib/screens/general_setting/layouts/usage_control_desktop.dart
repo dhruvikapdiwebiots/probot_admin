@@ -1,6 +1,5 @@
 import 'package:probot_admin/models/firebase_config.dart';
 
-
 import '../../../config.dart';
 
 class UsageControlDesktop extends StatelessWidget {
@@ -62,6 +61,12 @@ class UsageControlDesktop extends StatelessWidget {
                                       usageCtrl.commonSwitcherValueChange(
                                           "isChatHistory", val)),
                               DesktopSwitchCommon(
+                                  title: fonts.isPaystack,
+                                  value: configModel!.isPaystack,
+                                  onChanged: (val) =>
+                                      usageCtrl.commonSwitcherValueChange(
+                                          "isPaystack", val)),
+                              DesktopSwitchCommon(
                                   isDivider: true,
                                   title: fonts.voiceSearchEnable,
                                   value: configModel!.isVoiceEnable,
@@ -78,7 +83,6 @@ class UsageControlDesktop extends StatelessWidget {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-
                             DesktopSwitchCommon(
                                 title: fonts.isChatEnable,
                                 value: configModel!.isChatShow,
@@ -108,6 +112,12 @@ class UsageControlDesktop extends StatelessWidget {
                                 onChanged: (val) =>
                                     usageCtrl.commonSwitcherValueChange(
                                         "isCameraEnable", val)),
+                            DesktopSwitchCommon(
+                                title: fonts.isFlutterWave,
+                                value: configModel!.isFlutterWave,
+                                onChanged: (val) =>
+                                    usageCtrl.commonSwitcherValueChange(
+                                        "isFlutterWave", val)),
                             DesktopSwitchCommon(
                                 isDivider: true,
                                 title: fonts.isGuestLoginEnable,
